@@ -1,0 +1,47 @@
+.header {
+  background: linear-gradient(to right, #240505cc, #8e0e00, #ff0000);
+  background-color: #bd0505fa;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex; 
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.logo-zone {
+  display: flex;
+  align-items:center;
+  gap: 1rem;
+}
+
+.logo {
+  max-height: 120px;
+  margin-right: auto;
+ 
+}
+
+.menu-horizontal {
+  margin-top: 1rem;
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.menu-horizontal a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  transition: color 0.2s;
+}
+
+.menu-horizontal a:hover {
+  color: #862a2acc;
+}
+
+.admin-login {
+  color: #862a2acc;
+}
