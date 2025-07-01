@@ -1,31 +1,26 @@
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useState, useContext } from 'react';
 
 const AuthContext = createContext();
 
-export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
+export const AuthProvider = ({ children }) => {
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [accessToken, setAccessToken] = useState(null);
 
-  useEffect(() => {
-    // Vérifie si un token est déjà présent (ex: dans localStorage)
-    const storedUser = localStorage.getItem('user');
-    if (storedUser) setUser(JSON.parse(storedUser));
-  }, []);
-
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem('user', JSON.stringify(userData));
+  const login = ({ accessToken }) => {
+    setIsAdmin(true);
+    setAccessToken(accessToken);
   };
 
   const logout = () => {
-    setUser(null);
-    localStorage.removeItem('user');
+    setIsAdmin(false);
+    setAccessToken(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ isAdmin, accessToken, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
-}
+};
 
 export const useAuth = () => useContext(AuthContext);

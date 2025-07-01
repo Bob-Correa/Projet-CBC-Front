@@ -1,0 +1,86 @@
+.admin-inscriptions {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(60, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.admin-inscriptions h2 {
+  color: #7f1d1d;
+  margin-bottom: 1rem;
+}
+
+.admin-inscriptions table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.admin-inscriptions th, .admin-inscriptions td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.admin-inscriptions th {
+  background-color: #7f1d1d;
+  color: white;
+  font-weight: bold;
+}
+
+.admin-inscriptions tr:nth-child(even) {
+  background-color: #f9f5f5;
+}
+
+.admin-inscriptions td button {
+  margin-right: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.admin-inscriptions td button:first-of-type {
+  background-color: #a32d2d;
+  color: white;
+}
+.admin-inscriptions td button:first-of-type:hover {
+  background-color: #8e1d1d;
+}
+
+.admin-inscriptions td button:last-of-type {
+  background-color: #e2e2e2;
+  color: #7f1d1d;
+}
+.admin-inscriptions td button:last-of-type:hover {
+  background-color: #ccc;
+}
+
+.admin-inscriptions select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #7f1d1d;
+  font-weight: 500;
+}
+
+.btn-export {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #7f1d1d;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-export:hover {
+  background-color: #a33232;
+}

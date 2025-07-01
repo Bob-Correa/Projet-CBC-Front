@@ -1,0 +1,124 @@
+.form-preinscription {
+  max-width: 500px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(127, 29, 29, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-preinscription h2 {
+  text-align: center;
+  color: #7f1d1d;
+  margin-bottom: 1rem;
+}
+
+.form-preinscription input,
+.form-preinscription select,
+.form-preinscription textarea {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-preinscription textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-preinscription button {
+  background-color: #7f1d1d;
+  color: white;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.form-preinscription button:hover {
+  background-color: #a33232;
+}
+
+.confirmation-animation {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.checkmark-circle {
+  width: 60px;
+  height: 60px;
+  background-color: #7f1d1d;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pop 0.4s ease-out;
+}
+
+.checkmark-circle svg {
+  width: 30px;
+  height: 30px;
+  stroke-dasharray: 40;
+  stroke-dashoffset: 40;
+  animation: draw 0.5s forwards 0.2s ease-out;
+}
+
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.form-preinscription .error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+}
+.form-preinscription .success-message {
+  color: green;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+}
+.form-preinscription .loading-message {
+  color: #7f1d1d;
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  font-style: italic;
+}
+.form-preinscription .form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+.form-preinscription .form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #7f1d1d;
+}
+          
