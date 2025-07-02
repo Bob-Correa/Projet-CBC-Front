@@ -1,0 +1,43 @@
+.page-actualites {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.page-actualites h2 {
+  color: #7f1d1d;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.liste-actus {
+  display: grid;
+  gap: 2rem;
+}
+
+.carte-actu {
+  background: #fff;
+  border-left: 6px solid #7f1d1d;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 0 8px rgba(127, 29, 29, 0.1);
+}
+
+.carte-actu img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+}
+
+.carte-actu h3 {
+  margin: 0.5rem 0;
+  color: #333;
+}
+
+.carte-actu .date {
+  font-size: 0.9rem;
+  color: #888;
+}

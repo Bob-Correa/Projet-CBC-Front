@@ -15,6 +15,9 @@ export default function PreInscription() {
     commentaire: '',
     email: '',
     telephone: '',
+    adresse: '',
+    ville: '',
+    codePostal: '',
     // Champs pour les représentants légaux
     nomRL1: '',
     prenomRL1: '',
@@ -101,8 +104,11 @@ const estMineur = () => {
             <option value="Seniors">Seniors</option>
             <option value="Loisirs">Loisirs (Jusqu’à 97 ans)</option>
       </select>
-
-      <input type="number" name="cotisation" placeholder="Montant cotisation €" value={formulaire.cotisation} readOnly required />
+       <input type="number" name="cotisation" placeholder="Montant cotisation €" value={formulaire.cotisation} readOnly required />
+      <input type="text" name="adresse" placeholder="Adresse" value={formulaire.adresse} onChange={handleChange} required />
+       <input type="text" name="codePostal" placeholder="Code postal" value={formulaire.codePostal} onChange={handleChange} required />
+      <input type="text" name="ville" placeholder="Ville" value={formulaire.ville} onChange={handleChange} required />
+         
       <textarea name="commentaire" placeholder="Commentaire éventuel" value={formulaire.commentaire} onChange={handleChange} />
         <input type="email" name="email" placeholder="Adresse e-mail" value={formulaire.email} onChange={handleChange} required />
         <input type="tel" name="telephone" placeholder="Téléphone" value={formulaire.telephone} onChange={handleChange} required />

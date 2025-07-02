@@ -1,0 +1,50 @@
+.boutique-en-attente {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #fff6f6;
+  border-left: 8px solid #7f1d1d;
+  border-radius: 6px;
+  text-align: center;
+  box-shadow: 0 0 8px rgba(127, 29, 29, 0.1);
+}
+
+.boutique-en-attente h2 {
+  color: #7f1d1d;
+  margin-bottom: 1rem;
+}
+
+.boutique-en-attente p {
+  font-size: 1.1rem;
+  color: #444;
+}
+.boutique-en-attente a {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.75rem 1.5rem;
+  background-color: #7f1d1d;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+.boutique-en-attente a:hover {
+  background-color: #a33232;
+}
+.boutique-en-attente img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 1rem;
+  border-radius: 4px;
+}
+.boutique-en-attente .image-container {
+  margin-top: 1rem;
+  text-align: center;
+}
+.boutique-en-attente .image-container img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 0 6px rgba(127, 29, 29, 0.1);
+}

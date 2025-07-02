@@ -1,10 +1,10 @@
 // src/components/Header.jsx
 import { Link } from 'react-router-dom';
 import './Header.css';
-import { useAuth } from '../context/AuthContext';
+import { useAdmin } from '../context/AdminContext';
 
 export default function Header() {
-    const{ user, logout } = useAuth();
+    const{ user, logout } = useAdmin();
   return (
     <header className="header">
       <div className="logo-zone">

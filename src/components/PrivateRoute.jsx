@@ -1,8 +1,9 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAdmin } from '../context/AdminContext';
 
 export default function PrivateRoute({ children }) {
-  const { isAdmin } = useAuth();
+  const { admin, loading } = useAdmin();
 
-  return isAdmin ? children : <Navigate to="/admin/login" replace />;
+  if (loading) return <p>Chargement...</p>;
+  return admin ? children : <Navigate to="/admin/login" replace />;
 }

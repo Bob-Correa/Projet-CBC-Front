@@ -1,5 +1,7 @@
 // src/components/FormulaireActualite.jsx
 import { useState } from 'react';
+import './adminForm.css';
+import RetourDashboard from '../../components/RetourDashboard';
 
 export default function FormulaireActualite() {
   const [titre, setTitre] = useState('');
@@ -21,11 +23,16 @@ export default function FormulaireActualite() {
     formData.append('image', image); // champ 'image' attendu par Multer
 
     try {
-      const res = await fetch('http://localhost:3000/api/actualites', {
-        method: 'POST',
-        body: formData,
-        credentials: 'include' // si tu utilises des cookies pour l’auth admin
-      });
+      const token = localStorage.getItem('adminToken'); // ou depuis ton contexte
+
+const res = await fetch('http://localhost:3000/api/actualites', {
+  method: 'POST',
+  headers: {
+    Authorization: `Bearer ${token}`
+  },
+  body: formData
+});
+
 
       if (res.ok) {
         setMessage("✅ Actualité créée avec succès !");
@@ -43,6 +50,7 @@ export default function FormulaireActualite() {
 
   return (
     <form onSubmit={handleSubmit} className="form-actualite">
+    <RetourDashboard />
       <h2>Créer une actualité 📰</h2>
 
       <input

@@ -1,8 +1,11 @@
 import { Navigate } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAdmin } from '../context/AdminContext';
 
 const AdminRoute = ({ children }) => {
-  const { isAdmin } = useAuth();
-  return isAdmin ? children : <Navigate to="/" />;
+  const { admin, loading } = useAdmin();
+
+  if (loading) return <p>Chargement...</p>;
+  return admin ? children : <Navigate to="/" />;
 };
+
 export default AdminRoute;

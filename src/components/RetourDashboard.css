@@ -1,0 +1,18 @@
+.bloc-retour-dashboard {
+  margin-bottom: 1rem;
+}
+
+.btn-retour {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #7f1d1d;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-retour:hover {
+  background-color: #5e1414;
+}
