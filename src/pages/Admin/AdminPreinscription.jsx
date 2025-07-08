@@ -17,7 +17,7 @@ export default function AdminPreinscriptions() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/preinscriptions', {
+    fetch('http://localhost:3000/api/inscriptions', {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -28,7 +28,7 @@ export default function AdminPreinscriptions() {
   }, [token]);
 
   const valider = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/preinscriptions/${id}/valider`, {
+    const res = await fetch(`http://localhost:3000/api/inscriptions/${id}/valider`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`
@@ -48,7 +48,7 @@ export default function AdminPreinscriptions() {
     const confirm = window.confirm("Supprimer cette pré-inscription ?");
     if (!confirm) return;
 
-    const res = await fetch(`http://localhost:3000/api/preinscriptions/${id}`, {
+    const res = await fetch(`http://localhost:3000/api/inscriptions/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
@@ -96,7 +96,7 @@ export default function AdminPreinscriptions() {
               {p.statut !== 'validée' && (
                 <button onClick={() => valider(p._id)}>✅ Valider</button>
               )}
-              <Link to={`/admin/preinscriptions/modifier/${p._id}`}>✏️ Modifier</Link>
+              <Link to={`/admin/inscriptions/modifier/${p._id}`}>✏️ Modifier</Link>
               <button onClick={() => supprimer(p._id)}>🗑️ Supprimer</button>
             </div>
           </li>

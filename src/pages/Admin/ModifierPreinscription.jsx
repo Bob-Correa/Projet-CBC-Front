@@ -16,7 +16,7 @@ export default function ModifierPreinscription() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/preinscriptions/${id}`, {
+    fetch(`http://localhost:3000/api/inscriptions/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -34,7 +34,7 @@ export default function ModifierPreinscription() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:3000/api/preinscriptions/${id}`, {
+    const res = await fetch(`http://localhost:3000/api/inscriptions/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -44,7 +44,7 @@ export default function ModifierPreinscription() {
     });
 
     if (res.ok) {
-      navigate('/admin/preinscriptions');
+      navigate('/admin/inscriptions');
     } else {
       const err = await res.json();
       setMessage(err.message || "❌ Erreur lors de la modification");
