@@ -13,6 +13,10 @@ export default function AdminPreinscriptions() {
   const [page, setPage] = useState(1);
   const parPage = 5;
   const [message, setMessage] = useState('');
+  const [selectedId, setSelectedId] = useState(null);
+  const [filtreCategorie, setFiltreCategorie] = useState('');
+
+
 
   const token = localStorage.getItem('adminToken');
 
@@ -23,7 +27,16 @@ export default function AdminPreinscriptions() {
       }
     })
       .then(res => res.json())
-      .then(data => setPreinscriptions(data))
+      .then(data => {
+      if (Array.isArray(data)) {
+        setPreinscriptions(data);
+      } else if (Array.isArray(data.inscriptions)) {
+        setPreinscriptions(data.inscriptions);
+      } else {
+        console.warn("Format inattendu pour preinscriptions :", data);
+        setPreinscriptions([]);
+      }
+    })
       .catch(() => setMessage("❌ Impossible de charger les pré-inscriptions"));
   }, [token]);
 
@@ -62,10 +75,13 @@ export default function AdminPreinscriptions() {
     }
   };
 
-  const filtres = preinscriptions.filter(p =>
+  const filtres = preinscriptions
+  .filter(p =>
     p.nom.toLowerCase().includes(recherche.toLowerCase()) ||
     p.email.toLowerCase().includes(recherche.toLowerCase())
-  );
+  )
+  .filter(p => !filtreCategorie || p.categorie === filtreCategorie);
+
 
   const totalPages = Math.ceil(filtres.length / parPage);
   const debut = (page - 1) * parPage;
@@ -85,21 +101,80 @@ export default function AdminPreinscriptions() {
       />
 
       {message && <p>{message}</p>}
+      <div className="filtre-container">
+  <label htmlFor="filtreCategorie">Filtrer par catégorie :</label>
+  <select
+    id="filtreCategorie"
+    value={filtreCategorie}
+    onChange={(e) => setFiltreCategorie(e.target.value)}
+  >
+    <option value="">Toutes les catégories</option>
+    {[
+      "Baby Basket", "U7", "U9F", "U9G", "U11F", "U11G",
+      "U13F", "U13G", "U15F", "U15G", "U18F", "U18G",
+      "Senior Femme", "Senior Homme", "Loisirs"
+    ].map(cat => (
+      <option key={cat} value={cat}>{cat}</option>
+    ))}
+  </select>
+</div>
+
 
       <ul className="liste-preinscriptions">
         {visibles.map(p => (
           <li key={p._id} className="carte-preinscription">
-            <h3>{p.nom} {p.prenom}</h3>
-            <p><strong>Email :</strong> {p.email}</p>
-            <p><strong>Statut :</strong> {p.statut}</p>
-            <div className="actions">
-              {p.statut !== 'validée' && (
-                <button onClick={() => valider(p._id)}>✅ Valider</button>
-              )}
-              <Link to={`/admin/inscriptions/modifier/${p._id}`}>✏️ Modifier</Link>
-              <button onClick={() => supprimer(p._id)}>🗑️ Supprimer</button>
-            </div>
-          </li>
+  <h3
+  onClick={() => setSelectedId(selectedId === p._id ? null : p._id)}
+  className="entete-preinscription"
+>
+  <span>{p.nom} {p.prenom} — {p.categorie}</span>
+  <span className={`badge-statut badge-${p.statut?.replace(/\s/g, '')}`}>
+    {p.statut}
+  </span>
+</h3>
+
+
+  {selectedId === p._id && (
+    <div className="details-preinscription">
+      <p><strong>Sexe :</strong> {p.sexe}</p>
+      <p><strong>Date de naissance :</strong> {new Date(p.dateNaissance).toLocaleDateString()}</p>
+      <p><strong>Cotisation :</strong> {p.cotisation} €</p>
+      <p><strong>Type adhésion :</strong> {p.typeAdhesion}</p>
+      <p><strong>Email :</strong> {p.email}</p>
+      <p><strong>Téléphone :</strong> {p.telephone}</p>
+      <p><strong>Adresse :</strong> {p.adresse}, {p.codePostal} {p.ville}</p>
+      <p><strong>Modes de paiement :</strong> {p.modePaiement.join(', ')}</p>
+      {p.numeroCarteCJeune && <p><strong>Carte CJeune :</strong> {p.numeroCarteCJeune}</p>}
+
+      {p.representants && p.representants.length > 0 && (
+        <div>
+          <strong>Représentants légaux :</strong>
+          <ul>
+            {p.representants.map((rl, index) => (
+              <li key={index}>
+                {rl.prenom} {rl.nom} — {rl.email} — {rl.telephone}
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <div className="actions">
+        {p.statut !== 'validée' && (
+          <button onClick={() => valider(p._id)}>✅ Valider</button>
+        )}
+        <Link to={`/admin/inscriptions/modifier/${p._id}`}>✏️ Modifier</Link>
+        <a
+          href={`http://localhost:3000/api/inscriptions/${p._id}/pdf`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >📄 PDF</a>
+        <button onClick={() => supprimer(p._id)}>🗑 Supprimer</button>
+      </div>
+    </div>
+  )}
+</li>
+
         ))}
       </ul>
 

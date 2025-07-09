@@ -8,7 +8,9 @@ export default function Header() {
   return (
     <header className="header">
       <div className="logo-zone">
+      <Link to="/">
         <img src="/logo-cbc-SA.png" alt="Logo du club" className="logo" />
+        </Link>
         <h1>Crau Basket Club</h1>
       </div>
       <nav className="menu-horizontal">

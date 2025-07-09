@@ -84,3 +84,78 @@
 .btn-export:hover {
   background-color: #a33232;
 }
+.details-preinscription {
+  background: #f9fafb;
+  margin-top: 0.5rem;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+}
+.details-preinscription ul {
+  padding-left: 1rem;
+}
+.details-preinscription li {
+  list-style: disc;
+}
+
+.carte-preinscription {
+  background: #f3f4f6;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 5px solid #7f1d1d;
+}
+.carte-preinscription h3 {
+  color: #7f1d1d;
+  margin-bottom: 0.5rem;
+}
+
+.entete-preinscription {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  cursor: pointer;
+  font-size: 1.05rem;
+}
+
+.entete-preinscription .badge-statut {
+  margin-left: auto;
+  padding: 0.3rem 0.6rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  background-color: #e5e7eb;
+  color: #374151;
+}
+
+/* Statuts colorés */
+.badge-validée {
+  background-color: #10b981;
+  color: white;
+}
+.badge-refusée {
+  background-color: #ef4444;
+  color: white;
+}
+.badge-enattente {
+  background-color: #f59e0b;
+  color: white;
+}
+.filtre-container {
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+#filtreCategorie {
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+}
+.carte-preinscription:hover {
+ transform: translateY(-5px);
+  background-color: #fbeaea
+}
