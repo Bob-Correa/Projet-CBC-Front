@@ -11,17 +11,26 @@ export default function AdminActualites() {
 
   //const { admin } = useAdmin();
 
-  useEffect(() => {
-    const token = localStorage.getItem('adminToken');
-    fetch('http://localhost:3000/api/actualites', {
-      headers: {
-        Authorization: `Bearer ${token}`
+useEffect(() => {
+  const token = localStorage.getItem('adminToken');
+  fetch('http://localhost:3000/api/actualites', {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  })
+    .then(res => res.json())
+    .then(data => {
+      if (Array.isArray(data)) {
+        setActualites(data);
+      } else if (Array.isArray(data.actualites)) {
+        setActualites(data.actualites);
+      } else {
+        console.error("Format inattendu :", data);
+        setActualites([]);
       }
     })
-      .then(res => res.json())
-      .then(data => setActualites(data))
-      .catch(() => setMessage("❌ Impossible de charger les actualités"));
-  }, []);
+    .catch(() => setMessage("❌ Impossible de charger les actualités"));
+}, []);
 
   const supprimerActualite = async (id) => {
     const confirm = window.confirm("Supprimer cette actualité ?");

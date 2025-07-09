@@ -9,15 +9,20 @@ import AdminActualites from './pages/Admin/AdminActualites';
 import AdminLogin from './pages/Admin/AdminLogin';
 import AdminRegister from './pages/Admin/AdminRegister';
 import AdminDashboard from './pages/Admin/AdminDashboard';
+import AdminCalendrier from './pages/Admin/AdminCalendrier';
+import AjouterEvenement from './pages/Admin/AjouterEvenement';
+import ModifierEvenement from './pages/Admin/ModifierEvenement';
 import FormulaireActualite from './pages/Admin/FormulaireActualite';
 import ModifierActualite from './pages/Admin/ModifierActualite';
 import AdminPreinscription from './pages/Admin/AdminPreinscription';
 import ModifierPreinscription from './pages/Admin/ModifierPreinscription';
+import CalendrierClub from './pages/calendrierClub';
 
 import AdminRoute from './components/AdminRoute';
 //import PrivateRoute from './components/PrivateRoute';
 
 import { AdminProvider } from './context/AdminContext';
+
 
 function App() {
   return (
@@ -30,6 +35,7 @@ function App() {
           <Route path="/actualites" element={<Actualites />} />
           <Route path="/boutique" element={<Boutique />} />
           <Route path="/inscription" element={<PreInscription />} />
+          <Route path="/calendrier" element={<CalendrierClub />} />
 
           {/* 🔐 Authentification admin */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -80,6 +86,25 @@ function App() {
                 <ModifierPreinscription />
             </AdminRoute>
           } />
+
+                    <Route path="/admin/calendrier" element={
+            <AdminRoute>
+              <AdminCalendrier />
+            </AdminRoute>
+          } />
+          
+          <Route path="/admin/calendrier/ajouter" element={
+            <AdminRoute>
+              <AjouterEvenement />
+            </AdminRoute>
+          } />
+          <Route path="/admin/calendrier/modifier/:id" element={
+            <AdminRoute>
+              <ModifierEvenement />
+            </AdminRoute>
+          } />
+
+
 
           {/* 🚧 Routes pour créer/modifier des actualités */}
           <Route path="/admin/actualites/creer" element={

@@ -1,0 +1,33 @@
+.admin-calendrier {
+  max-width: 900px;
+  margin: auto;
+  padding: 1rem;
+}
+.liste-evenements {
+  list-style: none;
+  padding: 0;
+}
+.carte-evenement {
+  background: #f3f4f6;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 5px solid #2563eb;
+}
+.carte-entrainement { border-color: #10b981; }
+.carte-match { border-color: #dc2626; }
+.carte-reunion { border-color: #f59e0b; }
+.actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 1rem;
+}
+.btn-ajouter {
+  display: inline-block;
+  margin: 1rem 0;
+  background: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  text-decoration: none;
+}

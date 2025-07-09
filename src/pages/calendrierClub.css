@@ -1,0 +1,11 @@
+.calendrier-container {
+  max-width: 900px;
+  margin: auto;
+  background: #f9fafb;
+  padding: 1rem;
+  border-radius: 8px;
+}
+.fc-event {
+  font-size: 0.85rem;
+  cursor: pointer;
+}
