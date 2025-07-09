@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import RetourDashboard from '../../components/RetourDashboard';
 import './AjouterEvenement.css'; // On réutilise le même style que pour Ajouter
+import ModalConfirmation from '../../components/ModalConfirmation';
 
 export default function ModifierEvenement() {
   const { id } = useParams();
@@ -148,7 +149,11 @@ export default function ModifierEvenement() {
         <button type="submit">Enregistrer les modifications</button>
       </form>
 
-      {message && <p>{message}</p>}
+      <ModalConfirmation
+  message={message}
+  onClose={() => setMessage('')}
+/>
+
     </div>
   );
 }
