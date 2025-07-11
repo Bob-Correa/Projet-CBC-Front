@@ -11,8 +11,18 @@
   text-align: center;
 }
 
+.champ-recherche {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
 .liste-actus {
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
 }
 
@@ -22,6 +32,11 @@
   padding: 1rem;
   border-radius: 6px;
   box-shadow: 0 0 8px rgba(127, 29, 29, 0.1);
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+.carte-actu:hover {
+  transform: scale(1.01);
 }
 
 .carte-actu img {
@@ -40,4 +55,69 @@
 .carte-actu .date {
   font-size: 0.9rem;
   color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.carte-actu p {
+  color: #555;
+}
+
+.lire-suite {
+  display: inline-block;
+  margin-top: 0.6rem;
+  color: #7f1d1d;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.modal-actu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-box {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 0 12px rgba(127, 29, 29, 0.2);
+  border-left: 6px solid #7f1d1d;
+}
+
+.modal-box img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.modal-box .date {
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.modal-box button {
+  background-color: #7f1d1d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  margin-top: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+.modal-box button:hover {
+  background-color: #991b1b;
 }

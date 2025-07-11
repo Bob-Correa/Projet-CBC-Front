@@ -1,54 +1,163 @@
 .header {
   background: linear-gradient(to right, #240505cc, #8e0e00, #ff0000);
-  background-color: #bd0505fa;
-  color: white;
   padding: 1rem 2rem;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
+  color: white;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.logo-zone {
+/* Logo à gauche */
+.logo img {
+  max-height: 60px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+.logo img:hover {
+  transform: scale(1.05);
+}
+.bloc-logo {
   display: flex;
-  align-items:center;
+  align-items: center;
   gap: 1rem;
 }
 
-.logo {
-  max-height: 120px;
-  margin-right: auto;
- 
-}
-
-.menu-horizontal {
-  margin-top: 1rem;
+.logo-link {
   display: flex;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.menu-horizontal a {
-  color: white;
+  align-items: center;
   text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
-  transition: color 0.2s;
 }
 
-.menu-horizontal a:hover {
-  color: #862a2acc;
-}
-
-.admin-login {
-  color: #862a2acc;
-}
 .logo {
+  max-height: 90px;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
 .logo:hover {
   transform: scale(1.05);
+}
+
+.titre-club {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+/* Bouton de connexion */
+.btn-connexion {
+  background-color: #7f1d1d;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+.btn-connexion:hover {
+  background-color: #a33232;
+}     
+/* Bouton burger invisible en grand écran */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+.barre {
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  border-radius: 2px;
+}
+
+/* Menu horizontal à droite */
+.menu {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.menu a,
+.menu button {
+  color: white;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+.menu a:hover,
+.menu button:hover {
+  color: #ffdada;
+  text-decoration: underline;
+}
+
+/* Responsive menu burger */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .menu {
+    position: absolute;
+    top: 100%;
+    right: 2rem;
+    flex-direction: column;
+    align-items: flex-end;
+    background-color: #7f1d1d;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.3);
+    min-width: 180px;
+    display: none;
+    z-index: 99;
+  }
+
+  .menu.ouvert {
+    display: flex;
+  }
+}
+.menu-deroulant {
+  position: relative;
+}
+
+.menu-titre {
+  font-weight: bold;
+  cursor: pointer;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.6);
+}
+
+.sous-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #7f1d1d;
+  border-radius: 6px;
+  padding: 0.5rem 1rem;
+  display: none;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 999;
+}
+
+.menu-deroulant:hover .sous-menu {
+  display: flex;
+}
+
+.sous-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+.sous-menu a:hover {
+  text-decoration: underline;
 }

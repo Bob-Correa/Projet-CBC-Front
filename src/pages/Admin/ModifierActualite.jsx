@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import './adminForm.css';
+import './ModifierActualite.css';
 import RetourDashboard from '../../components/RetourDashboard';
 
 

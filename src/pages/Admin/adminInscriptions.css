@@ -131,15 +131,15 @@
 }
 
 /* Statuts colorés */
-.badge-validée {
+.badge-statut.badge-validée {
   background-color: #10b981;
   color: white;
 }
-.badge-refusée {
+.badge-statut.badge-refusée {
   background-color: #ef4444;
   color: white;
 }
-.badge-enattente {
+.badge-statut.badge-enattente {
   background-color: #f59e0b;
   color: white;
 }
@@ -158,4 +158,20 @@
 .carte-preinscription:hover {
  transform: translateY(-5px);
   background-color: #fbeaea
+}
+.compteur-demande {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.resume-stats {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: #374151;
+}
+.resume-stats p {
+  margin: 0;
 }

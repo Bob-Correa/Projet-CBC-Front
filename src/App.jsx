@@ -33,7 +33,9 @@ function App() {
           {/* 🌍 Pages publiques */}
           <Route path="/" element={<Accueil />} />
           <Route path="/actualites" element={<Actualites />} />
-          <Route path="/boutique" element={<Boutique />} />
+          <Route path="/boutique" element={<Boutique  />} />
+         
+
           <Route path="/inscription" element={<PreInscription />} />
           <Route path="/calendrier" element={<CalendrierClub />} />
 

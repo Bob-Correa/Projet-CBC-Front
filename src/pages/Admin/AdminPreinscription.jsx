@@ -119,6 +119,14 @@ export default function AdminPreinscriptions() {
   </select>
 </div>
 
+<p className="compteur-demande">
+  Total demandes affichées : <strong>{filtres.length}</strong>
+</p>
+<div className="resume-stats">
+  <p>✅ Validées : {filtres.filter(p => p.statut === 'validée').length}</p>
+  <p>🕗 En attente : {filtres.filter(p => p.statut === 'en attente').length}</p>
+  <p>❌ Refusées : {filtres.filter(p => p.statut === 'refusée').length}</p>
+</div>
 
       <ul className="liste-preinscriptions">
         {visibles.map(p => (

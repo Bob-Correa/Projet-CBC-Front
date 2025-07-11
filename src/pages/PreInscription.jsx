@@ -26,6 +26,7 @@ export default function PreInscription() {
   });
 
   const [message, setMessage] = useState('');
+ 
 
   const categoriesFemme = {
     "Baby Basket": 200,
@@ -185,8 +186,8 @@ export default function PreInscription() {
 
       <select name="typeAdhesion" value={formulaire.typeAdhesion} onChange={handleChange} required>
   <option value="">Type d'adhésion</option>
-  <option value="nouvelle">Nouvelle adhésion</option>
-  <option value="renouvellement">Renouvellement</option>
+  <option value="Nouvelle">Nouvelle adhésion</option>
+  <option value="Renouvellement">Renouvellement</option>
 </select>
 
 
@@ -199,7 +200,9 @@ export default function PreInscription() {
         <option value="feminin">Féminin</option>
       </select>
 
-      <input type="date" name="dateNaissance" value={formulaire.dateNaissance} onChange={handleChange} required />
+     <input type="date" name="dateNaissance" value={formulaire.dateNaissance} onChange={handleChange} required min="1950-01-01"
+/>
+
 
  {formulaire.dateNaissance && new Date(formulaire.dateNaissance).getFullYear() <= 2007 ? (
   <select name="categorie" value={formulaire.categorie} onChange={handleChange} required>
@@ -235,8 +238,11 @@ export default function PreInscription() {
       <input type="text" name="adresse" placeholder="Adresse" value={formulaire.adresse} onChange={handleChange} required />
       <input type="text" name="codePostal" placeholder="Code postal" value={formulaire.codePostal} onChange={handleChange} required />
       <input type="text" name="ville" placeholder="Ville" value={formulaire.ville} onChange={handleChange} required />
-      <input type="email" name="email" placeholder="Email" value={formulaire.email} onChange={handleChange} required />
-      <input type="tel" name="telephone" placeholder="Téléphone" value={formulaire.telephone} onChange={handleChange} required />
+      <input type="email" name="email" placeholder="Email" value={formulaire.email} onChange={(e) => setFormulaire({ ...formulaire, email: e.target.value })} required />
+      <input type="tel" name="telephone" placeholder="Téléphone" value={formulaire.telephone} onChange={(e) => {
+    const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setFormulaire({ ...formulaire, telephone: valeur });
+  }} required />
       <textarea name="commentaire" placeholder="Commentaire" value={formulaire.commentaire} onChange={handleChange} />
 
       {estMineur() && (
@@ -244,12 +250,18 @@ export default function PreInscription() {
           <h4>👨‍👩‍👧 Représentants légaux</h4>
           <input type="text" name="nomRL1" placeholder="Nom RL 1" value={representantsRL.nomRL1} onChange={handleChange} required />
           <input type="text" name="prenomRL1" placeholder="Prénom RL 1" value={representantsRL.prenomRL1} onChange={handleChange} required />
-          <input type="email" name="emailRL1" placeholder="Email RL 1" value={representantsRL.emailRL1} onChange={handleChange} required />
-          <input type="tel" name="telephoneRL1" placeholder="Téléphone RL 1" value={representantsRL.telephoneRL1} onChange={handleChange} />
+          <input type="email" name="emailRL1" placeholder="Email RL 1" value={representantsRL.emailRL1} onChange={(e) => setFormulaire({ ...formulaire, emailRL1: e.target.value })} required />
+          <input type="tel" name="telephoneRL1" placeholder="Téléphone RL 1" value={representantsRL.telephoneRL1} onChange={(e) => {
+    const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setFormulaire({ ...formulaire, telephoneRL1: valeur });
+  }} />
           <input type="text" name="nomRL2" placeholder="Nom RL 2" value={representantsRL.nomRL2} onChange={handleChange} />
           <input type="text" name="prenomRL2" placeholder="Prénom RL 2" value={representantsRL.prenomRL2} onChange={handleChange} />
-          <input type="email" name="emailRL2" placeholder="Email RL 2" value={representantsRL.emailRL2} onChange={handleChange} />
-          <input type="tel" name="telephoneRL2" placeholder="Téléphone RL 2" value={representantsRL.telephoneRL2} onChange={handleChange} />
+          <input type="email" name="emailRL2" placeholder="Email RL 2" value={representantsRL.emailRL2} onChange={(e) => setFormulaire({ ...formulaire, emailRL2: e.target.value })} />
+          <input type="tel" name="telephoneRL2" placeholder="Téléphone RL 2" value={representantsRL.telephoneRL2} onChange={(e) => {
+    const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
+    setFormulaire({ ...formulaire, telephoneRL2: valeur });
+  }}  />
         </>
       )}
 
