@@ -27,6 +27,16 @@ export default function Header() {
       </button>
 
       <nav className={`menu ${menuOuvert ? 'ouvert' : ''}`}>
+
+      <div className="menu-deroulant">
+          <span className="menu-titre">Le Club ▾</span>
+          <div className="sous-menu">
+            <Link to="/club/histoire">Histoire</Link>
+            <Link to="/club/bureau">Le Bureau</Link>
+            <Link to="/club/categories">Les Catégories</Link>
+          </div>
+        </div>
+        
         <div className="menu-deroulant">
         <span className="menu-titre">Boutique ▾</span>
           <div className="sous-menu">
@@ -45,7 +55,8 @@ export default function Header() {
         <Link to="/partenaires">Partenaires</Link>
         <Link to="/medias">Médias</Link>
         <Link to="/calendrier">Calendrier</Link>
-        <Link to="/contact">Contact</Link>
+        
+
         {user?.accessToken ? (
           <>
             <Link to="/admin">Dashboard</Link>

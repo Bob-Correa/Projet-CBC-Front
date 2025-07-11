@@ -128,8 +128,54 @@ export default function PreInscription() {
     }));
   };
 
+  const validateForm = (data) => {
+  const erreurs = [];
+
+  // Email
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(data.email)) {
+    erreurs.push("Email invalide");
+  }
+
+  // Téléphone
+  if (!/^\d{10}$/.test(data.telephone)) {
+    erreurs.push("Téléphone invalide (10 chiffres requis)");
+  }
+
+  // Date ≥ 1950
+  if (data.dateNaissance) {
+    const annee = new Date(data.dateNaissance).getFullYear();
+    if (annee < 1950) {
+      erreurs.push("L’année de naissance doit être supérieure ou égale à 1950");
+    }
+  }
+
+  // Champs représentant RL1 si mineur
+  if (estMineur()) {
+    if (!representantsRL.nomRL1 || !representantsRL.prenomRL1) {
+      erreurs.push("Représentant légal 1 incomplet");
+    }
+    if (!emailRegex.test(representantsRL.emailRL1)) {
+      erreurs.push("Email RL1 invalide");
+    }
+    if (!/^\d{10}$/.test(representantsRL.telephoneRL1)) {
+      erreurs.push("Téléphone RL1 invalide");
+    }
+  }
+
+  return erreurs;
+};
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("Données envoyées au serveur :", formulaire);
+    const erreurs = validateForm(formulaire);
+if (erreurs.length > 0) {
+  setMessage(`❌ ${erreurs.join(" | ")}`);
+  return;
+}
+
 
     const payload = {
       ...formulaire,
@@ -151,6 +197,7 @@ export default function PreInscription() {
               : null
           ].filter(Boolean)
         : []
+        
     };
 
     try {
@@ -173,9 +220,11 @@ export default function PreInscription() {
         });
       } else {
         const err = await res.json();
+        console.error("Erreur serveur :", err.message);
         setMessage(`❌ ${err.message || 'Erreur lors de la pré-inscription'}`);
       }
-    } catch {
+    } catch  (err){
+      console.error("Erreur serveur :", err.message);
       setMessage('❌ Serveur inaccessible');
     }
   };
@@ -237,12 +286,12 @@ export default function PreInscription() {
 
       <input type="text" name="adresse" placeholder="Adresse" value={formulaire.adresse} onChange={handleChange} required />
       <input type="text" name="codePostal" placeholder="Code postal" value={formulaire.codePostal} onChange={handleChange} required />
-      <input type="text" name="ville" placeholder="Ville" value={formulaire.ville} onChange={handleChange} required />
+      <input type="text" name="ville" placeholder="Ville" value={formulaire.ville} onChange={handleChange}  />
       <input type="email" name="email" placeholder="Email" value={formulaire.email} onChange={(e) => setFormulaire({ ...formulaire, email: e.target.value })} required />
       <input type="tel" name="telephone" placeholder="Téléphone" value={formulaire.telephone} onChange={(e) => {
     const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
     setFormulaire({ ...formulaire, telephone: valeur });
-  }} required />
+  }}  />
       <textarea name="commentaire" placeholder="Commentaire" value={formulaire.commentaire} onChange={handleChange} />
 
       {estMineur() && (
@@ -250,18 +299,44 @@ export default function PreInscription() {
           <h4>👨‍👩‍👧 Représentants légaux</h4>
           <input type="text" name="nomRL1" placeholder="Nom RL 1" value={representantsRL.nomRL1} onChange={handleChange} required />
           <input type="text" name="prenomRL1" placeholder="Prénom RL 1" value={representantsRL.prenomRL1} onChange={handleChange} required />
-          <input type="email" name="emailRL1" placeholder="Email RL 1" value={representantsRL.emailRL1} onChange={(e) => setFormulaire({ ...formulaire, emailRL1: e.target.value })} required />
-          <input type="tel" name="telephoneRL1" placeholder="Téléphone RL 1" value={representantsRL.telephoneRL1} onChange={(e) => {
+          <input type="email" name="emailRL1" placeholder="Email RL 1" value={formulaire.emailRL1} onChange={(e) => setFormulaire({ ...formulaire, emailRL1: e.target.value })} required />
+     <input
+  type="tel"
+  name="telephoneRL1"
+  placeholder="Téléphone RL 1"
+  value={formulaire.telephoneRL1}
+  onChange={(e) => {
     const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
     setFormulaire({ ...formulaire, telephoneRL1: valeur });
-  }} />
+  }}
+  required
+/>
+
           <input type="text" name="nomRL2" placeholder="Nom RL 2" value={representantsRL.nomRL2} onChange={handleChange} />
           <input type="text" name="prenomRL2" placeholder="Prénom RL 2" value={representantsRL.prenomRL2} onChange={handleChange} />
-          <input type="email" name="emailRL2" placeholder="Email RL 2" value={representantsRL.emailRL2} onChange={(e) => setFormulaire({ ...formulaire, emailRL2: e.target.value })} />
-          <input type="tel" name="telephoneRL2" placeholder="Téléphone RL 2" value={representantsRL.telephoneRL2} onChange={(e) => {
+          <input
+  type="email"
+  name="emailRL2"
+  placeholder="Email RL 2"
+  value={formulaire.emailRL2}
+  onChange={(e) =>
+    setFormulaire({ ...formulaire, emailRL2: e.target.value })
+  }
+  
+/>
+
+          <input
+  type="tel"
+  name="telephoneRL2"
+  placeholder="Téléphone RL 2"
+  value={formulaire.telephoneRL2}
+  onChange={(e) => {
     const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
     setFormulaire({ ...formulaire, telephoneRL2: valeur });
-  }}  />
+  }}
+  
+/>
+
         </>
       )}
 
