@@ -16,7 +16,13 @@ export function AdminProvider({ children }) {
           headers: { Authorization: `Bearer ${t}` }
         });
 
-        if (!res.ok) throw new Error();
+        if (res.status === 401) {
+  console.warn("❌ Token expiré, suppression...");
+  localStorage.removeItem("adminToken");
+  throw new Error("Token expiré");
+}
+
+
         const data = await res.json();
         setAdmin(data);
       };

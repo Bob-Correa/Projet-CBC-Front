@@ -26,6 +26,8 @@ export default function PreInscription() {
   });
 
   const [message, setMessage] = useState('');
+  const [showConfirmation, setShowConfirmation] = useState(false);
+
  
 
   const categoriesFemme = {
@@ -166,68 +168,64 @@ export default function PreInscription() {
   return erreurs;
 };
 
+const handleSubmit = (e) => {
+  e.preventDefault();
+  const erreurs = validateForm(formulaire);
+  if (erreurs.length > 0) {
+    setMessage(`❌ ${erreurs.join(" | ")}`);
+    return;
+  }
+  setShowConfirmation(true); // ✅ On attend la confirmation
+};
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("Données envoyées au serveur :", formulaire);
-    const erreurs = validateForm(formulaire);
-if (erreurs.length > 0) {
-  setMessage(`❌ ${erreurs.join(" | ")}`);
-  return;
-}
-
-
-    const payload = {
-      ...formulaire,
-      representants: estMineur()
-        ? [
-            {
-              nom: representantsRL.nomRL1,
-              prenom: representantsRL.prenomRL1,
-              email: representantsRL.emailRL1,
-              telephone: representantsRL.telephoneRL1
-            },
-            representantsRL.nomRL2 && representantsRL.prenomRL2
-              ? {
-                  nom: representantsRL.nomRL2,
-                  prenom: representantsRL.prenomRL2,
-                  email: representantsRL.emailRL2,
-                  telephone: representantsRL.telephoneRL2
-                }
-              : null
-          ].filter(Boolean)
-        : []
-        
-    };
-
-    try {
-      const res = await fetch('http://localhost:3000/api/inscriptions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload)
-      });
-
-      if (res.ok) {
-        setMessage("✅ Pré-inscription enregistrée !");
-        setFormulaire({
-          nom: '', prenom: '', sexe: '', dateNaissance: '', categorie: '',
-          cotisation: '', adresse: '', codePostal: '', ville: '',
-          email: '', telephone: '', commentaire: '', modePaiement: [], numeroCarteCJeune: ''
-        });
-        setRepresentantsRL({
-          nomRL1: '', prenomRL1: '', emailRL1: '', telephoneRL1: '',
-          nomRL2: '', prenomRL2: '', emailRL2: '', telephoneRL2: ''
-        });
-      } else {
-        const err = await res.json();
-        console.error("Erreur serveur :", err.message);
-        setMessage(`❌ ${err.message || 'Erreur lors de la pré-inscription'}`);
-      }
-    } catch  (err){
-      console.error("Erreur serveur :", err.message);
-      setMessage('❌ Serveur inaccessible');
-    }
+const handleConfirmSend = async () => {
+  const payload = {
+    ...formulaire,
+    representants: estMineur()
+      ? [
+          {
+            nom: representantsRL.nomRL1,
+            prenom: representantsRL.prenomRL1,
+            email: representantsRL.emailRL1,
+            telephone: representantsRL.telephoneRL1
+          },
+          representantsRL.nomRL2 && representantsRL.prenomRL2
+            ? {
+                nom: representantsRL.nomRL2,
+                prenom: representantsRL.prenomRL2,
+                email: representantsRL.emailRL2,
+                telephone: representantsRL.telephoneRL2
+              }
+            : null
+        ].filter(Boolean)
+      : []
   };
+
+  try {
+    const res = await fetch('http://localhost:3000/api/inscriptions', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+
+    if (res.ok) {
+      setMessage("✅ Pré-inscription enregistrée !");
+      
+      setShowConfirmation(false);
+    } else {
+      const err = await res.json();
+      setMessage(`❌ ${err.message || "Erreur lors de la pré-inscription"}`);
+      setShowConfirmation(false);
+    }
+  } catch (err) {
+    console.error("Erreur serveur :", err.message);
+    setMessage("❌ Serveur inaccessible");
+    setShowConfirmation(false);
+  }
+};
+
+ 
+
 
   return (
     <form onSubmit={handleSubmit} className="form-preinscription">
@@ -296,21 +294,30 @@ if (erreurs.length > 0) {
 
       {estMineur() && (
         <>
-          <h4>👨‍👩‍👧 Représentants légaux</h4>
+          <h4> Représentants légaux</h4>
           <input type="text" name="nomRL1" placeholder="Nom RL 1" value={representantsRL.nomRL1} onChange={handleChange} required />
           <input type="text" name="prenomRL1" placeholder="Prénom RL 1" value={representantsRL.prenomRL1} onChange={handleChange} required />
-          <input type="email" name="emailRL1" placeholder="Email RL 1" value={formulaire.emailRL1} onChange={(e) => setFormulaire({ ...formulaire, emailRL1: e.target.value })} required />
-     <input
-  type="tel"
-  name="telephoneRL1"
-  placeholder="Téléphone RL 1"
-  value={formulaire.telephoneRL1}
-  onChange={(e) => {
-    const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
-    setFormulaire({ ...formulaire, telephoneRL1: valeur });
-  }}
-  required
-/>
+          <input
+              type="email"
+              name="emailRL1"
+              placeholder="Email RL 1"
+              value={representantsRL.emailRL1}
+              onChange={handleChange}
+              required
+          />
+
+          <input
+              type="tel"
+              name="telephoneRL1"
+              placeholder="Téléphone RL 1"
+              value={representantsRL.telephoneRL1}
+              onChange={(e) => {
+                const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
+                setRepresentantsRL({ ...representantsRL, telephoneRL1: valeur });
+              }}
+              required
+            />
+
 
           <input type="text" name="nomRL2" placeholder="Nom RL 2" value={representantsRL.nomRL2} onChange={handleChange} />
           <input type="text" name="prenomRL2" placeholder="Prénom RL 2" value={representantsRL.prenomRL2} onChange={handleChange} />
@@ -341,8 +348,8 @@ if (erreurs.length > 0) {
       )}
 
             <fieldset>
-        <legend>💳 Mode(s) de paiement</legend>
-        {['Chèque', 'Espèces', 'Virement', 'Carte bancaire', 'carte CJeune', 'Chèque CAF'].map((mode) => (
+        <legend> Mode(s) de paiement</legend>
+        {['Chèque', 'Espèces', 'Virement', 'Carte CJeune', 'Chèque CAF'].map((mode) => (
           <label key={mode}>
             <input
               type="checkbox"
@@ -385,6 +392,48 @@ if (erreurs.length > 0) {
           <p>{message}</p>
         </div>
       )}
+      {showConfirmation && (
+  <div className="modal-overlay">
+    <div className="modal-content">
+      <h3>📋 Vérification des informations</h3>
+      <p>Merci de vérifier les données avant validation :</p>
+
+      <ul className="resume-liste">
+        <li><strong>Nom :</strong> {formulaire.nom} {formulaire.prenom}</li>
+        <li><strong>Sexe :</strong> {formulaire.sexe}</li>
+        <li><strong>Date de naissance :</strong> {formulaire.dateNaissance}</li>
+        <li><strong>Catégorie :</strong> {formulaire.categorie}</li>
+        <li><strong>Cotisation :</strong> {formulaire.cotisation} €</li>
+        <li><strong>Email :</strong> {formulaire.email}</li>
+        <li><strong>Téléphone :</strong> {formulaire.telephone}</li>
+        <li><strong>Adresse :</strong> {formulaire.adresse}, {formulaire.codePostal} {formulaire.ville}</li>
+        <li><strong>Type d’adhésion :</strong> {formulaire.typeAdhesion}</li>
+        <li><strong>Mode(s) de paiement :</strong> {formulaire.modePaiement.join(', ')}</li>
+        {estMineur() && (
+          <>
+            <li><strong>RL1 :</strong> {representantsRL.nomRL1} {representantsRL.prenomRL1}</li>
+            <li><strong>Email RL1 :</strong> {representantsRL.emailRL1}</li>
+            <li><strong>Téléphone RL1 :</strong> {representantsRL.telephoneRL1}</li>
+            {representantsRL.nomRL2 && representantsRL.prenomRL2 && (
+              <>
+                <li><strong>RL2 :</strong> {representantsRL.nomRL2} {representantsRL.prenomRL2}</li>
+                <li><strong>Email RL2 :</strong> {representantsRL.emailRL2}</li>
+                <li><strong>Téléphone RL2 :</strong> {representantsRL.telephoneRL2}</li>
+              </>
+            )}
+          </>
+        )}
+      </ul>
+
+      <button onClick={handleConfirmSend}>✅ Confirmer et envoyer</button>
+      <button onClick={() => setShowConfirmation(false)}>❌ Annuler</button>
+    </div>
+  </div>
+)}
+{formulaire.numeroCarteCJeune && (
+  <li><strong>N° Carte C Jeune :</strong> {formulaire.numeroCarteCJeune}</li>
+)}
+
     </form>
   );
 }
