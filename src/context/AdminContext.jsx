@@ -6,7 +6,7 @@ export function AdminProvider({ children }) {
   const [admin, setAdmin] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  // ✅ 1. Vérifie et charge l'admin au démarrage
+  // ✅ Vérifie et charge l'admin au démarrage
   useEffect(() => {
     const chargerProfil = async () => {
       let token = localStorage.getItem('adminToken');
@@ -17,11 +17,10 @@ export function AdminProvider({ children }) {
         });
 
         if (res.status === 401) {
-  console.warn("❌ Token expiré, suppression...");
-  localStorage.removeItem("adminToken");
-  throw new Error("Token expiré");
-}
-
+          console.warn("❌ Token expiré, suppression...");
+          localStorage.removeItem("adminToken");
+          throw new Error("Token expiré");
+        }
 
         const data = await res.json();
         setAdmin(data);
@@ -53,6 +52,26 @@ export function AdminProvider({ children }) {
     };
 
     chargerProfil();
+  }, []);
+
+  // 🔁 Ajout du refresh périodique
+  useEffect(() => {
+    const interval = setInterval(async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/admin/token', {
+          method: 'POST',
+          credentials: 'include'
+        });
+        const data = await res.json();
+        if (res.ok && data.accessToken) {
+          localStorage.setItem('adminToken', data.accessToken);
+        }
+      } catch (err) {
+        console.warn("🔄 Échec du refresh périodique :", err);
+      }
+    }, 14 * 60 * 1000); // toutes les 14 minutes
+
+    return () => clearInterval(interval);
   }, []);
 
   const logout = () => {

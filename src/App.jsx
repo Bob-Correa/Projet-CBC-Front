@@ -16,12 +16,19 @@ import FormulaireActualite from './pages/Admin/FormulaireActualite';
 import ModifierActualite from './pages/Admin/ModifierActualite';
 import AdminPreinscription from './pages/Admin/AdminPreinscription';
 import ModifierPreinscription from './pages/Admin/ModifierPreinscription';
+import AdminMedias from './pages/Admin/AdminMedias';
+import Medias from './pages/Medias';
+import FormAlbum from './pages/Admin/FormAlbum';
+import FormVideo from './pages/Admin/FormVideo';
+
+
 import CalendrierClub from './pages/calendrierClub';
 
 import AdminRoute from './components/AdminRoute';
 //import PrivateRoute from './components/PrivateRoute';
 
 import { AdminProvider } from './context/AdminContext';
+
 
 
 function App() {
@@ -38,6 +45,7 @@ function App() {
 
           <Route path="/inscription" element={<PreInscription />} />
           <Route path="/calendrier" element={<CalendrierClub />} />
+          <Route path="/medias" element={<Medias />} />
 
           {/* 🔐 Authentification admin */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -109,17 +117,15 @@ function App() {
 
 
           {/* 🚧 Routes pour créer/modifier des actualités */}
-          <Route path="/admin/actualites/creer" element={
-          <AdminRoute>
-              <FormulaireActualite />
-          </AdminRoute>
-          } />
+          <Route path="/admin/actualites/creer" element={ <AdminRoute><FormulaireActualite /></AdminRoute>} />
 
-          <Route path="/admin/actualites/modifier/:id" element={
-            <AdminRoute>
-                <ModifierActualite />
-             </AdminRoute>
-          } />
+          <Route path="/admin/actualites/modifier/:id" element={<AdminRoute><ModifierActualite /></AdminRoute>} />
+          <Route path="/admin/medias" element={<AdminRoute><AdminMedias /></AdminRoute>} />
+          <Route path="/admin/medias/album" element={<AdminRoute><FormAlbum /></AdminRoute>} />
+          <Route path="/admin/medias/album/modifier/:id" element={<AdminRoute><FormAlbum /></AdminRoute>} />
+          <Route path="/admin/medias/video" element={<AdminRoute><FormVideo /></AdminRoute>} />
+
+
 
 
           {/* 🚧 Ajoute ici tes futures routes */}

@@ -62,13 +62,21 @@ useEffect(() => {
       <ul className="liste-actualites">
         {actualites.map(actu => (
           <li key={actu._id} className="carte-actu">
-            <h3>{actu.titre}</h3>
-            <p>{actu.contenu.slice(0, 100)}...</p>
-            <div className="actions">
-              <Link to={`/admin/actualites/modifier/${actu._id}`}>✏️ Modifier</Link>
-              <button onClick={() => supprimerActualite(actu._id)}>🗑️ Supprimer</button>
-            </div>
-          </li>
+              <h3>{actu.titre}</h3>
+              {actu.image && (
+                <img
+                  src={`http://localhost:3000${actu.image}`}
+                  alt={actu.titre}
+                  className="image-actu"
+                />
+              )}
+              <p>{actu.contenu.slice(0, 100)}...</p>
+              <div className="actions">
+                <Link to={`/admin/actualites/modifier/${actu._id}`}>✏️ Modifier</Link>
+                <button onClick={() => supprimerActualite(actu._id)}>🗑️ Supprimer</button>
+              </div>
+            </li>
+
         ))}
       </ul>
     </div>

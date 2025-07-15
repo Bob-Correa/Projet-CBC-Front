@@ -1,18 +1,19 @@
-// src/components/FormulaireActualite.jsx
 import { useState } from 'react';
 import './adminForm.css';
 import RetourDashboard from '../../components/RetourDashboard';
+import LibrairieImages from '../../components/LibrairieImages';
 
 export default function FormulaireActualite() {
   const [titre, setTitre] = useState('');
   const [contenu, setContenu] = useState('');
-  const [image, setImage] = useState(null);
+  const [imageUpload, setImageUpload] = useState(null); // fichier uploadé
+  const [imageLibrairie, setImageLibrairie] = useState(null); // image sélectionnée
   const [message, setMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!titre || !contenu || !image) {
+    if (!titre || !contenu || (!imageUpload && !imageLibrairie)) {
       setMessage("Tous les champs sont requis.");
       return;
     }
@@ -20,25 +21,30 @@ export default function FormulaireActualite() {
     const formData = new FormData();
     formData.append('titre', titre);
     formData.append('contenu', contenu);
-    formData.append('image', image); // champ 'image' attendu par Multer
+
+    if (imageUpload) {
+      formData.append('image', imageUpload);
+    } else if (imageLibrairie) {
+      formData.append('image', imageLibrairie); // envoyer le chemin
+    }
 
     try {
-      const token = localStorage.getItem('adminToken'); // ou depuis ton contexte
+      const token = localStorage.getItem('adminToken');
 
-const res = await fetch('http://localhost:3000/api/actualites', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${token}`
-  },
-  body: formData
-});
-
+      const res = await fetch('http://localhost:3000/api/actualites', {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        body: formData
+      });
 
       if (res.ok) {
         setMessage("✅ Actualité créée avec succès !");
         setTitre('');
         setContenu('');
-        setImage(null);
+        setImageUpload(null);
+        setImageLibrairie(null);
       } else {
         const err = await res.json();
         setMessage(`❌ Erreur : ${err.message}`);
@@ -50,7 +56,7 @@ const res = await fetch('http://localhost:3000/api/actualites', {
 
   return (
     <form onSubmit={handleSubmit} className="form-actualite">
-    <RetourDashboard />
+      <RetourDashboard />
       <h2>Créer une actualité 📰</h2>
 
       <input
@@ -66,11 +72,37 @@ const res = await fetch('http://localhost:3000/api/actualites', {
         onChange={(e) => setContenu(e.target.value)}
       />
 
+      <label>📤 Importer une nouvelle image :</label>
       <input
         type="file"
         accept="image/*"
-        onChange={(e) => setImage(e.target.files[0])}
+        onChange={(e) => {
+          setImageUpload(e.target.files[0]);
+          setImageLibrairie(null); // reset sélection
+        }}
       />
+
+      <label>📁 ...ou choisir une image existante :</label>
+      <LibrairieImages onSelect={(imgPath) => {
+        setImageLibrairie(imgPath);
+        setImageUpload(null); // reset upload
+      }} />
+
+      {(imageLibrairie || imageUpload) && (
+        <div className="apercu-image">
+          <p>✅ Image sélectionnée :</p>
+          <img
+            src={
+              imageUpload
+                ? URL.createObjectURL(imageUpload)
+                : `http://localhost:3000${imageLibrairie}`
+            }
+            alt={`Prévisualisation de l’image : ${imageLibrairie || imageUpload.name}`}
+
+            style={{ maxWidth: '120px', borderRadius: '6px' }}
+          />
+        </div>
+      )}
 
       <button type="submit">Publier</button>
 

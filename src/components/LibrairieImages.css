@@ -1,0 +1,58 @@
+.librairie-container {
+  margin-top: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 6px;
+}
+
+.filtres-librairie {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.filtres-librairie button {
+  padding: 0.4rem 0.8rem;
+  background: #eee;
+  border: 1px solid #a12828;
+  color: #a12828;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.filtres-librairie .filtre-actif {
+  background: #a12828;
+  color: white;
+}
+
+.album-section {
+  margin-bottom: 1rem;
+}
+
+.album-section h5 {
+  margin-bottom: 0.3rem;
+  color: #7f1d1d;
+}
+
+.miniatures-librairie {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.img-clickable {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.img-clickable:hover {
+  border-color: #a12828;
+}
