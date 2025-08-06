@@ -1,18 +1,24 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState} from 'react';
 import './Medias.css';
+import LightGallery from 'lightgallery/react';
+
+// Plugins
+import lgThumbnail from 'lightgallery/plugins/thumbnail';
+import lgZoom from 'lightgallery/plugins/zoom';
 
 export default function Medias() {
   const [albums, setAlbums] = useState([]);
   const [videos, setVideos] = useState([]);
   const [message, setMessage] = useState('');
   const [filtreCategorie, setFiltreCategorie] = useState('Tous');
+
   const albumsFiltres = filtreCategorie === 'Tous'
-  ? albums
-  : albums.filter(album => album.categorie === filtreCategorie);
-    const videosFiltres = filtreCategorie === 'Tous'
+    ? albums
+    : albums.filter(album => album.categorie === filtreCategorie);
+
+  const videosFiltres = filtreCategorie === 'Tous'
     ? videos
     : videos.filter(video => video.categorie === filtreCategorie);
-
 
   useEffect(() => {
     fetch('http://localhost:3000/api/media/albums')
@@ -34,48 +40,59 @@ export default function Medias() {
 
   return (
     <div className="page-medias">
-      <h2>🎞️ Médias du Club</h2>
+      <h2>Médias du Club</h2>
 
       {message && <p>{message}</p>}
 
       <h3>📁 Albums photos</h3>
       <div className="filtres-categories">
-  {['Tous', 'Matchs', 'Tournois', 'Événements', 'Coulisses'].map(cat => (
-    <button
-      key={cat}
-      onClick={() => setFiltreCategorie(cat)}
-      className={filtreCategorie === cat ? 'active-filtre' : ''}
-    >
-      {cat}
-    </button>
-  ))}
-</div>
+        {['Tous', 'Matchs', 'Tournois', 'Événements', 'Coulisses'].map(cat => (
+          <button
+            key={cat}
+            onClick={() => setFiltreCategorie(cat)}
+            className={filtreCategorie === cat ? 'active-filtre' : ''}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
 
       <div className="gallery-albums">
-        {Array.isArray(albumsFiltres) && albumsFiltres.map(album => (
+        {albumsFiltres.map(album => (
           <div key={album._id} className="carte-album">
             <h4>{album.titre}</h4>
             <p>{album.description}</p>
-            <div className="miniatures">
-              {Array.isArray(album.images) && album.images.slice(0, 3).map((img, i) => (
-                <img
+
+            <LightGallery
+              speed={500}
+              plugins={[lgThumbnail, lgZoom]}
+              elementClassNames="miniatures"
+            >
+              {album.images.map((img, i) => (
+                <a
                   key={i}
-                  src={`http://localhost:3000${img}`}
-                  alt={`Miniature ${i + 1}`}
-                />
+                  href={`http://localhost:3000${img}`}
+                  data-sub-html={`<h4>${album.titre}</h4><p>${album.description}</p>`}
+                >
+                  <img
+                    src={`http://localhost:3000${img}`}
+                    alt={`Miniature ${i + 1}`}
+                    style={{ width: '100px', marginRight: '10px', cursor: 'pointer' }}
+                  />
+                </a>
               ))}
-            </div>
+            </LightGallery>
+
             <p className="date">📅 Créé le : {new Date(album.date).toLocaleDateString('fr-FR')}</p>
             <p className="categorie">📂 Catégorie : {album.categorie}</p>
             <p className="nombre-images">🖼️ {album.images.length} image(s)</p>
-
           </div>
         ))}
       </div>
 
       <h3>🎥 Vidéos de match</h3>
       <div className="videos-section">
-        {Array.isArray(videosFiltres) && videosFiltres.map(video => (
+        {videosFiltres.map(video => (
           <div key={video._id} className="carte-video">
             <h4>{video.titre}</h4>
             <p>{video.description}</p>
@@ -88,8 +105,6 @@ export default function Medias() {
               allowFullScreen
             />
           </div>
-
-          
         ))}
       </div>
     </div>

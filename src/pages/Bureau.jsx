@@ -16,7 +16,7 @@ const membres = [
 export default function Bureau() {
   return (
     <div className="page-bureau">
-      <h2>👥 Le Bureau du CBC</h2>
+      <h2> Le Bureau </h2>
       <div className="grille-bureau">
         {membres.map((membre, i) => (
           <div key={i} className="carte-membre">

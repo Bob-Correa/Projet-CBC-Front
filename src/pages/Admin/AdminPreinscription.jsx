@@ -90,7 +90,7 @@ export default function AdminPreinscriptions() {
   return (
     <div className="admin-preinscriptions">
     <RetourDashboard />
-      <h2>📋 Gestion des pré-inscriptions</h2>
+      <h2>Gestion des pré-inscriptions</h2>
 
       <input
         type="text"

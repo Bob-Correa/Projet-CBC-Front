@@ -1,50 +1,100 @@
 .form-preinscription {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(127, 29, 29, 0.1);
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2.5rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  font-family: 'Segoe UI', sans-serif;
+  gap: 1.5rem;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+  transition: box-shadow 0.3s ease;
+}
+
+.form-preinscription:hover {
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
 }
 
 .form-preinscription h2 {
   text-align: center;
-  color: #7f1d1d;
+  color: #1f2937;
+  font-size: 1.8rem;
   margin-bottom: 1rem;
+}
+
+.form-preinscription .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-preinscription .form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #374151;
+  font-size: 0.95rem;
 }
 
 .form-preinscription input,
 .form-preinscription select,
 .form-preinscription textarea {
-  padding: 0.75rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
   font-size: 1rem;
   font-family: inherit;
+  background-color: #f9fafb;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.form-preinscription input:focus,
+.form-preinscription select:focus,
+.form-preinscription textarea:focus {
+  outline: none;
+  border-color: #7f1d1d;
+  background-color: #fff;
 }
 
 .form-preinscription textarea {
   resize: vertical;
-  min-height: 80px;
+  min-height: 100px;
 }
 
 .form-preinscription button {
-  background-color: #7f1d1d;
+  background-color: #2563eb;
   color: white;
-  padding: 0.75rem;
+  padding: 0.75rem 1rem;
   border: none;
-  border-radius: 4px;
-  font-weight: bold;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  transition: background-color 0.2s ease;
 }
 
 .form-preinscription button:hover {
-  background-color: #a33232;
+  background-color: #1d4ed8;
+}
+
+.error-message,
+.success-message,
+.loading-message {
+  font-size: 0.9rem;
+  margin-top: -0.5rem;
+  padding-left: 0.5rem;
+}
+
+.error-message {
+  color: #dc2626;
+}
+
+.success-message {
+  color: #16a34a;
+}
+
+.loading-message {
+  color: #7771;
+  font-style: italic;
 }
 
 .confirmation-animation {
@@ -56,9 +106,9 @@
 }
 
 .checkmark-circle {
-  width: 60px;
-  height: 60px;
-  background-color: #7f1d1d;
+  width: 64px;
+  height: 64px;
+  background-color: #16a34a;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -67,11 +117,12 @@
 }
 
 .checkmark-circle svg {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   stroke-dasharray: 40;
   stroke-dashoffset: 40;
   animation: draw 0.5s forwards 0.2s ease-out;
+  stroke: white;
 }
 
 @keyframes draw {
@@ -95,32 +146,7 @@
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.form-preinscription .error-message {
-  color: red;
-  font-size: 0.9rem;
-  margin-top: -0.5rem;
-}
-.form-preinscription .success-message {
-  color: green;
-  font-size: 0.9rem;
-  margin-top: -0.5rem;
-}
-.form-preinscription .loading-message {
-  color: #7f1d1d;
-  font-size: 0.9rem;
-  margin-top: -0.5rem;
-  font-style: italic;
-}
-.form-preinscription .form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 1rem;
-}
-.form-preinscription .form-group label {
-  margin-bottom: 0.5rem;
-  font-weight: bold;
-  color: #7f1d1d;
-}
+
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
@@ -131,10 +157,12 @@
 
 .modal-content {
   background: white;
-  padding: 20px;
-  border-radius: 6px;
+  padding: 2rem;
+  border-radius: 10px;
   text-align: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
+
 .resume-liste {
   text-align: left;
   padding: 0;
@@ -144,4 +172,6 @@
 
 .resume-liste li {
   margin-bottom: 8px;
+  font-size: 0.95rem;
+  color: #374151;
 }

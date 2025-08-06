@@ -133,16 +133,24 @@ export default function PreInscription() {
   const validateForm = (data) => {
   const erreurs = [];
 
-  // Email
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(data.email)) {
-    erreurs.push("Email invalide");
-  }
+const isMinor = estMineur();
 
-  // Téléphone
-  if (!/^\d{10}$/.test(data.telephone)) {
-    erreurs.push("Téléphone invalide (10 chiffres requis)");
+// Email (requis uniquement si majeur)
+if (!isMinor) {
+  if (!data.email || !emailRegex.test(data.email)) {
+    erreurs.push("Email invalide ou manquant pour les majeurs");
   }
+}
+
+
+// Téléphone (requis uniquement si majeur)
+if (!isMinor) {
+  if (!data.telephone || !/^\d{10}$/.test(data.telephone)) {
+    erreurs.push("Téléphone invalide ou manquant pour les majeurs");
+  }
+}
+
 
   // Date ≥ 1950
   if (data.dateNaissance) {
@@ -229,12 +237,13 @@ const handleConfirmSend = async () => {
 
   return (
     <form onSubmit={handleSubmit} className="form-preinscription">
-      <h2>📝 Pré-Inscription Saison 2025/2026</h2>
+      <h2>Pré-Inscription Saison 2025/2026</h2>
 
       <select name="typeAdhesion" value={formulaire.typeAdhesion} onChange={handleChange} required>
   <option value="">Type d'adhésion</option>
   <option value="Nouvelle">Nouvelle adhésion</option>
   <option value="Renouvellement">Renouvellement</option>
+  <option value="Essai">Essai</option>
 </select>
 
 
@@ -280,16 +289,22 @@ const handleConfirmSend = async () => {
 
 
 
-      <input type="number" name="cotisation" placeholder="Cotisation €" value={formulaire.cotisation} readOnly required />
+      <input type="texte" name="cotisation" placeholder="Cotisation €" value={`${formulaire.cotisation}€` } readOnly required />
 
       <input type="text" name="adresse" placeholder="Adresse" value={formulaire.adresse} onChange={handleChange} required />
       <input type="text" name="codePostal" placeholder="Code postal" value={formulaire.codePostal} onChange={handleChange} required />
       <input type="text" name="ville" placeholder="Ville" value={formulaire.ville} onChange={handleChange}  />
-      <input type="email" name="email" placeholder="Email" value={formulaire.email} onChange={(e) => setFormulaire({ ...formulaire, email: e.target.value })} required />
-      <input type="tel" name="telephone" placeholder="Téléphone" value={formulaire.telephone} onChange={(e) => {
+     <input  type="email" name="email" placeholder="Email" value={formulaire.email} onChange={(e) => setFormulaire({ ...formulaire, email: e.target.value })}
+  required={!estMineur()}
+/>
+
+     <input type="tel" name="telephone" placeholder="Téléphone" value={formulaire.telephone} onChange={(e) => {
     const valeur = e.target.value.replace(/\D/g, '').slice(0, 10);
     setFormulaire({ ...formulaire, telephone: valeur });
-  }}  />
+  }}
+  required={!estMineur()}
+/>
+
       <textarea name="commentaire" placeholder="Commentaire" value={formulaire.commentaire} onChange={handleChange} />
 
       {estMineur() && (
