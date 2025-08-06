@@ -41,3 +41,65 @@
   margin: 0.5rem 0;
   color: #333;
 }
+
+.section-partenaires {
+  background-color: rgba(255, 255, 255, 0.1); /* fond presque transparent */
+  border: 2px solid #7F1D1D; /* contour bordeaux */
+  padding: 2rem;
+  margin: 3rem auto;
+  border-radius: 12px;
+  text-align: center;
+  color: #7F1D1D; /* texte bordeaux */
+}
+
+/* Style des titres ou textes spécifiques */
+.section-partenaires h2,
+.section-partenaires p {
+  color: #7F1D1D;
+}
+
+/* Ligne entre les logos */
+.section-partenaires .ligne {
+  width: 80%;
+  height: 2px;
+  background-color: #7F1D1D; /* ligne bordeaux */
+  margin: 2rem auto;
+}
+
+/* Exemple de style pour les logos */
+.section-partenaires .logos img {
+  max-width: 120px;
+  margin: 1rem;
+}
+
+
+.grille-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0; /* on gère l'espacement avec les bordures */
+}
+.logo-partenaire {
+  padding: 1rem 2rem;
+  border-right: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-partenaire:last-child {
+  border-right: none; /* pas de trait après le dernier logo */
+}
+
+.logo-partenaire img {
+  max-width: 100px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  transition: transform 0.3s ease;
+}
+
+.logo-partenaire img:hover {
+  transform: scale(1.05);
+}
+

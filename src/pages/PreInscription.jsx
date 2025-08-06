@@ -31,26 +31,26 @@ export default function PreInscription() {
  
 
   const categoriesFemme = {
-    "Baby Basket": 200,
-    "U7": 120,
-    "U9F": 120,
-    "U11F": 140,
+    "Baby Basket": 180,
+    "U7": 100,
+    "U9F": 100,
+    "U11F": 110,
     "U13F": 150,
-    "U15F": 170,
+    "U15F": 180,
     "U18F": 180,
-    "Senior Femme": 190,
+    "Senior Femme": 180,
     "Loisirs": 100
   };
 
   const categoriesHomme = {
-    "Baby Basket": 200,
-    "U7": 120,
-    "U9G": 120,
-    "U11G": 140,
+    "Baby Basket": 180 ,
+    "U7": 100,
+    "U9G": 100,
+    "U11G": 110,
     "U13G": 150,
-    "U15G": 170,
+    "U15G": 180,
     "U18G": 180,
-    "Senior Homme": 190,
+    "Senior Homme": 180,
     "Loisirs": 100
   };
 
@@ -229,7 +229,7 @@ const handleConfirmSend = async () => {
 
   return (
     <form onSubmit={handleSubmit} className="form-preinscription">
-      <h2>📝 Pré-Inscription</h2>
+      <h2>📝 Pré-Inscription Saison 2025/2026</h2>
 
       <select name="typeAdhesion" value={formulaire.typeAdhesion} onChange={handleChange} required>
   <option value="">Type d'adhésion</option>

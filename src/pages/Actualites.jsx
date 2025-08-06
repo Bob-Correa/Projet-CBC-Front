@@ -6,11 +6,17 @@ export default function Actualites() {
   const [recherche, setRecherche] = useState('');
   const [articleActif, setArticleActif] = useState(null);
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/actualites')
-      .then(res => res.json())
-      .then(data => setActualites(data));
-  }, []);
+ useEffect(() => {
+  fetch('http://localhost:3000/api/actualites')
+    .then(res => {
+      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+      return res.json();
+    })
+    .then(data => setActualites(data))
+    .catch(err => {
+      console.error('❌ Erreur lors du fetch des actualités :', err);
+    });
+}, []);
 
   const actualitesFiltrees = actualites
     .filter(actu =>

@@ -1,0 +1,75 @@
+.admin-list-page {
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+}
+
+.admin-list-page h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  color: #1f2937;
+}
+
+.admin-list-page h2 {
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #374151;
+}
+
+.admin-list-page p {
+  margin-bottom: 1rem;
+  color: #6b7280;
+}
+
+.admin-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.admin-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  background: #ffffff;
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.admin-list li:hover {
+  transform: scale(1.01);
+}
+
+.admin-list li strong {
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.admin-list button {
+  margin-left: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.admin-list button:hover {
+  opacity: 0.9;
+}
+
+.admin-list button:first-of-type {
+  background-color: #3b82f6;
+  color: white;
+}
+
+.admin-list button:last-of-type {
+  background-color: #ef4444;
+  color: white;
+}

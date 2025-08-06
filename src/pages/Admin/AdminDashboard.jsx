@@ -33,6 +33,10 @@ export default function AdminDashboard() {
           📅 <strong>Calendrier</strong>
           <span>Rencontres, scores, événements</span>
         </Link>
+        <Link to="/admin/all" className="admin-card">
+          👑 <strong>Gestion des Admins</strong>
+          <span>Ajouter, supprimer ou promouvoir des admins</span>
+        </Link>
       </div>
     </div>
   );

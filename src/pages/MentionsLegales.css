@@ -1,0 +1,29 @@
+.mentions-container {
+  max-width: 900px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+  font-family: 'Segoe UI', sans-serif;
+  color: #333;
+}
+
+.mentions-container h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #7f1d1d;
+}
+
+.mentions-container h2 {
+  font-size: 1.4rem;
+  margin-top: 2rem;
+  color: #a12828;
+}
+
+.mentions-container p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}

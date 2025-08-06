@@ -1,5 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
+import Footer from './components/Footer';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import Contact from './pages/Contact';
+import MentionsLegales from './pages/MentionsLegales';
+import Partenaires from './pages/Partenaires';
+import AdminList from './pages/Admin/AdminList';
+
 
 import Accueil from './pages/Accueil';
 import Actualites from './pages/Actualites';
@@ -10,12 +17,14 @@ import AdminLogin from './pages/Admin/AdminLogin';
 import AdminRegister from './pages/Admin/AdminRegister';
 import AdminDashboard from './pages/Admin/AdminDashboard';
 import AdminCalendrier from './pages/Admin/AdminCalendrier';
+import Bureau from './pages/Bureau';
 import AjouterEvenement from './pages/Admin/AjouterEvenement';
 import ModifierEvenement from './pages/Admin/ModifierEvenement';
 import FormulaireActualite from './pages/Admin/FormulaireActualite';
 import ModifierActualite from './pages/Admin/ModifierActualite';
 import AdminPreinscription from './pages/Admin/AdminPreinscription';
 import ModifierPreinscription from './pages/Admin/ModifierPreinscription';
+import Page404 from './pages/Page404';
 import AdminMedias from './pages/Admin/AdminMedias';
 import Medias from './pages/Medias';
 import FormAlbum from './pages/Admin/FormAlbum';
@@ -40,12 +49,20 @@ function App() {
           {/* 🌍 Pages publiques */}
           <Route path="/" element={<Accueil />} />
           <Route path="/actualites" element={<Actualites />} />
+          <Route path="/actualites/:slug" element={<Actualites />} />
+          <Route path="/actualites/:slug/:id" element={<Actualites />} />
           <Route path="/boutique" element={<Boutique  />} />
+          <Route path="/club/bureau" element={<Bureau />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
+          <Route path="/partenaires" element={<Partenaires />} />
+
          
 
           <Route path="/inscription" element={<PreInscription />} />
           <Route path="/calendrier" element={<CalendrierClub />} />
           <Route path="/medias" element={<Medias />} />
+          <Route path="*" element={<Page404 />} />
 
           {/* 🔐 Authentification admin */}
           <Route path="/admin/login" element={<AdminLogin />} />
@@ -113,7 +130,9 @@ function App() {
               <ModifierEvenement />
             </AdminRoute>
           } />
-
+         
+          <Route path="/admin/all" element={<AdminList />} />
+       
 
 
           {/* 🚧 Routes pour créer/modifier des actualités */}
@@ -130,6 +149,7 @@ function App() {
 
           {/* 🚧 Ajoute ici tes futures routes */}
           </Routes>
+        <Footer />
          </AdminProvider>
     </BrowserRouter>
   );

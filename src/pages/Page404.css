@@ -1,0 +1,29 @@
+.page-404 {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: #7f1d1d;
+}
+
+.page-404 h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.page-404 p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.page-404 .btn-retour {
+  background-color: #7f1d1d;
+  color: white;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.page-404 .btn-retour:hover {
+  background-color: #a12828;
+}
