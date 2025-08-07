@@ -1,22 +1,22 @@
 import { useEffect, useState } from 'react';
 import './actualites.css';
+import { Link } from 'react-router-dom';
 
 export default function Actualites() {
   const [actualites, setActualites] = useState([]);
   const [recherche, setRecherche] = useState('');
-  const [articleActif, setArticleActif] = useState(null);
 
- useEffect(() => {
-  fetch('http://localhost:3000/api/actualites')
-    .then(res => {
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-      return res.json();
-    })
-    .then(data => setActualites(data))
-    .catch(err => {
-      console.error('❌ Erreur lors du fetch des actualités :', err);
-    });
-}, []);
+  useEffect(() => {
+    fetch('http://localhost:3000/api/actualites')
+      .then(res => {
+        if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+        return res.json();
+      })
+      .then(data => setActualites(data))
+      .catch(err => {
+        console.error('❌ Erreur lors du fetch des actualités :', err);
+      });
+  }, []);
 
   const actualitesFiltrees = actualites
     .filter(actu =>
@@ -39,27 +39,17 @@ export default function Actualites() {
 
       <div className="liste-actus">
         {actualitesFiltrees.map(actu => (
-          <div key={actu._id} className="carte-actu" onClick={() => setArticleActif(actu)}>
-            {actu.image && <img src={actu.image} alt={actu.titre} />}
-            <h3>{actu.titre}</h3>
+          <div key={actu._id} className="carte-actu">
+            <Link to={`/actualites/${actu._id}`}>
+              {actu.image && <img src={actu.image} alt={actu.titre} />}
+              <h3>{actu.titre}</h3>
+            </Link>
             <p className="date">{new Date(actu.datePublication).toLocaleDateString('fr-FR')}</p>
             <p>{actu.contenu.slice(0, 160)}...</p>
-            <span className="lire-suite">📖 Lire la suite</span>
+            <Link to={`/actualites/${actu._id}`} className="lire-suite">📖 Lire la suite</Link>
           </div>
         ))}
       </div>
-
-      {articleActif && (
-        <div className="modal-actu" onClick={() => setArticleActif(null)}>
-          <div className="modal-box" onClick={e => e.stopPropagation()}>
-            <h3>{articleActif.titre}</h3>
-            {articleActif.image && <img src={articleActif.image} alt={articleActif.titre} />}
-            <p className="date">{new Date(articleActif.datePublication).toLocaleDateString('fr-FR')}</p>
-            <p>{articleActif.contenu}</p>
-            <button onClick={() => setArticleActif(null)}>❌ Fermer</button>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

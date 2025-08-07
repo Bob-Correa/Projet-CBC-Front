@@ -6,8 +6,10 @@
   justify-content: space-between;
   flex-wrap: wrap;
   color: white;
-  position: relative;
+  position: sticky;
   font-family: 'Segoe UI', sans-serif;
+  top:0;
+  z-index: 100;
 }
 
 /* Logo à gauche */

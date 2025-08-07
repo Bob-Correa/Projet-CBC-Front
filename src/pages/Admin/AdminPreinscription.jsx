@@ -92,13 +92,7 @@ export default function AdminPreinscriptions() {
     <RetourDashboard />
       <h2>Gestion des pré-inscriptions</h2>
 
-      <input
-        type="text"
-        placeholder="Rechercher par nom ou email..."
-        value={recherche}
-        onChange={(e) => setRecherche(e.target.value)}
-        className="champ-recherche"
-      />
+      <input type="text" placeholder="Rechercher par nom ou email..."  value={recherche} onChange={(e) => setRecherche(e.target.value)} className="champ-recherche" />
 
       {message && <p>{message}</p>}
       <div className="filtre-container">

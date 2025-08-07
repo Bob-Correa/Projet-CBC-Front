@@ -121,3 +121,8 @@
 .modal-box button:hover {
   background-color: #991b1b;
 }
+.menu a,
+.menu button,
+.menu .actif {
+  text-decoration: none;
+}
