@@ -12,10 +12,11 @@
 
 .grille-bureau {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* ✅ 3 cartes par ligne */
   gap: 2rem;
   justify-items: center;
 }
+
 
 .carte-membre {
   background: white;
@@ -55,6 +56,59 @@
 .carte-membre {
   animation: fadeIn 0.6s ease;
 }
+.carte-membre {
+  perspective: 1000px;
+  width: 100%;
+  max-width: 300px;
+  height: 360px;
+  cursor: pointer;
+}
+
+.carte-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+
+.carte-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.carte-front,
+.carte-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.carte-front img {
+  width: 160px;              /* ✅ Agrandi depuis 120px */
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 4px solid #a12828; /* ✅ Bord plus épais pour plus de présence */
+  box-shadow: 0 0 10px rgba(0,0,0,0.1); /* ✅ Optionnel : effet de halo */
+}
+
+
+.carte-back {
+  transform: rotateY(180deg);
+  background-color: #fef2f2;
+  color: #7f1d1d;
+}
+
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }

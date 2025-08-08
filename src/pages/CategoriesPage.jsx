@@ -5,7 +5,7 @@ const categories = [
   {
     id: 1,
     nom: 'Baby basket',
-    image: '/images/football.jpg',
+    image: '/Categories/Baby-basket.png',
     description: 'Pour la première année le club décide d\' ouvrir ses porte au plus petits...',
   },
   {
@@ -59,7 +59,7 @@ const categories = [
   {
     id: 10,
     nom: 'U18 Filles',
-    image: '/images/football.jpg',
+    image: '/Categories/U18F.png',
     description: 'Les filles de 15 à 18 ans s\'entraînent pour se préparer aux compétitions et aux matchs.',
   },
   {
@@ -77,7 +77,7 @@ const categories = [
   {
     id: 13,
     nom: 'Loisirs',
-    image: '/images/football.jpg',
+    image: '/Categories/loisirs.jpg',
     description: 'Le basket loisirs est ouvert à tous ceux qui souhaitent pratiquer le basket sans pression de compétition.',
   },
   // Ajoute autant de catégories que tu veux
