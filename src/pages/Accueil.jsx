@@ -13,10 +13,12 @@ export default function Accueil() {
       .then(data => setActus(data.slice(0, 3)));
   }, []);
   const partenaires = [
-  { nom: 'Super U', logo: '/Logo/superu.png' },
-  { nom: 'Kyks Tacos', logo: '/logos/autopro.png' },
-  { nom: 'Crédit Agricole', logo: '/logos/credit-agricole.png' },
+  { nom: 'Intermarché', logo: '/Logo/intermarche.jpg' },
+  { nom: 'Kyks Tacos', logo: '/Logo/kyks-tacos.png' },
+  { nom: 'Nestenn Immobilier', logo: '/Logo/NESTENN-BLANC.png' },
   { nom: 'Ville de Saint-Martin-de-Crau', logo: '/Logo/smc.jpg' },
+  { nom: 'CM Coaching', logo: '/Logo/Cm.png' },
+  
 ];
 
 

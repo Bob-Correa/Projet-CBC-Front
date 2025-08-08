@@ -19,6 +19,7 @@ import PreInscription from './pages/PreInscription';
 import CalendrierClub from './pages/calendrierClub';
 import Medias from './pages/Medias';
 import Page404 from './pages/Page404';
+import CategoriesPage from './pages/CategoriesPage';
 
 // 🔐 Authentification admin
 import AdminLogin from './pages/Admin/AdminLogin';
@@ -51,6 +52,7 @@ function App() {
         <Route path="/actualites/:id" element={<ActualiteDetail />} />
         <Route path="/boutique" element={<Boutique />} />
         <Route path="/club/bureau" element={<Bureau />} />
+        <Route path="/club/categories" element={<CategoriesPage />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/mentions-legales" element={<MentionsLegales />} />
         <Route path="/partenaires" element={<Partenaires />} />

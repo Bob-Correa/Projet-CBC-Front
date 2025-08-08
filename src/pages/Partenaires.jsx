@@ -2,24 +2,29 @@ import './Partenaires.css';
 
 const partenaires = [
   {
-    nom: 'Supermarché Super U',
-    logo: '/Logo/superu.png',
-    lien: 'https://www.craumarket.fr',
+    nom: 'Intermarché',
+    logo: '/Logo/intermarche.jpg',
+    lien: 'https://www.intermarche.com/accueil',
   },
   {
-    nom: 'Garage AutoPro',
-    logo: '/logos/autopro.png',
-    lien: 'https://www.autopro.fr',
+    nom: 'Nestenn Immobilier',
+    logo: '/Logo/NESTENN-BLANC.png',
+    lien: 'https://nestenn.com/vente/saint-martin-de-crau-13310',
   },
   {
-    nom: 'Crédit Agricole',
-    logo: '/logos/credit-agricole.png',
-    lien: 'https://www.credit-agricole.fr',
+    nom: 'CM Coaching',
+    logo: '/Logo/Cm.png',
+    lien: 'https://www.cmcoaching.fr',
   },
   {
     nom: 'Ville de Saint-Martin-de-Crau',
     logo: '/Logo/smc.jpg',
     lien: 'https://www.saintmartindecrau.fr',
+  },
+  {
+    nom: 'Kyks Tacos',
+    logo: '/Logo/kyks-tacos.png',
+    lien: 'https://www.facebook.com/Lotentik13310/?locale=fr_FR',
   },
   // Ajoute autant de partenaires que tu veux
 ];
