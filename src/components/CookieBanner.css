@@ -1,0 +1,41 @@
+.cookieBanner {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #002b5c; /* bleu foncé Crau Basket */
+  color: white;
+  padding: 1rem;
+  text-align: center;
+  z-index: 1000;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.cookieBanner p {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.cookieButtons {
+  margin-top: 0.8rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.cookieButtons button {
+  background-color: white;
+  color: #002b5c;
+  border: 2px solid white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cookieButtons button:hover {
+  background-color: #ffcb05; /* jaune basket dynamique */
+  color: #002b5c;
+  border-color: #ffcb05;
+}

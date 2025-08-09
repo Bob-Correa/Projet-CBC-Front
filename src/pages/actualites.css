@@ -63,12 +63,17 @@
 }
 
 .lire-suite {
-  display: inline-block;
-  margin-top: 0.6rem;
+  text-decoration: none;
   color: #7f1d1d;
   font-weight: bold;
   font-size: 0.9rem;
 }
+
+.lire-suite:hover {
+  text-decoration: underline;
+  color: #a61c1c;
+}
+
 
 .modal-actu {
   position: fixed;
@@ -125,4 +130,13 @@
 .menu button,
 .menu .actif {
   text-decoration: none;
+}
+.carte-actu a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.carte-actu a:hover {
+  text-decoration: underline;
+  color: #a61c1c;
 }

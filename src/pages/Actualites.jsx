@@ -46,7 +46,7 @@ export default function Actualites() {
             </Link>
             <p className="date">{new Date(actu.datePublication).toLocaleDateString('fr-FR')}</p>
             <p>{actu.contenu.slice(0, 160)}...</p>
-            <Link to={`/actualites/${actu._id}`} className="lire-suite">📖 Lire la suite</Link>
+            <Link to={`/actualites/${actu._id}`} className="lire-suite"> Lire la suite</Link>
           </div>
         ))}
       </div>

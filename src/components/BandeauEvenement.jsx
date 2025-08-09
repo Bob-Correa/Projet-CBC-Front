@@ -4,7 +4,7 @@ export default function BandeauEvenement() {
   return (
     <div className="bandeau-evenement">
     <div className="texte-defilant">
-      📣 Prochain événement : Math de Gala contre le Heat de Miami le 32 Aout au Complexe!! !
+      📣 Bienvenue sur le site internet du CBC, le site est pleine construction, mais nous vous permettons déja de pouvoir vous inscrire!!!
       </div>
     </div>
   );

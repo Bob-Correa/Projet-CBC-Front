@@ -23,7 +23,7 @@
   border-radius: 12px;
   padding: 1.5rem;
   width: 100%;
-  max-width: 260px;
+  max-width: 200px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -35,11 +35,13 @@
 
 .carte-membre img {
   width: 120px;
-  height: 120px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border-radius: 50%;
   margin-bottom: 1rem;
   border: 3px solid #a12828;
+  display: block;
+  margin: 0 auto;
 }
 
 .carte-membre h3 {
@@ -94,8 +96,8 @@
 
 .carte-front img {
   width: 160px;              /* ✅ Agrandi depuis 120px */
-  height: 160px;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   border-radius: 50%;
   margin-bottom: 1rem;
   border: 4px solid #a12828; /* ✅ Bord plus épais pour plus de présence */

@@ -1,5 +1,7 @@
 import React from 'react';
 import './Footer.css';
+import { Link } from 'react-router-dom';
+
 
 const Footer = () => {
   return (
@@ -9,6 +11,7 @@ const Footer = () => {
           <a href="/contact">Contactez-nous</a>
           <a href="/mentions-legales">Mentions légales</a>
           <a href="/plan-du-site">Plan du site</a>
+          <Link to="/politique-confidentialite">Politique de confidentialité</Link>
         </div>
         <div className="footer-reseaux">
           <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
@@ -23,6 +26,8 @@ const Footer = () => {
           <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
             <i className="fab fa-tiktok"></i>
           </a>
+          
+
         </div>
       </div>
       <div className="footer-bas">

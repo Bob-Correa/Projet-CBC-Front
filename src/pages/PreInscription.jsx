@@ -378,7 +378,7 @@ const handleConfirmSend = async () => {
         ))}
       </fieldset>
 
-      {formulaire.modePaiement.includes('carte CJeune') && (
+      {formulaire.modePaiement.includes('Carte CJeune') && (
         <input
           type="text"
           name="numeroCarteCJeune"

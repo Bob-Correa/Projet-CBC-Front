@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import { AdminProvider } from './context/AdminContext';
 import AdminRoute from './components/AdminRoute';
-
+import CookieBanner from './components/CookieBanner';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 
 // 🌍 Pages publiques
@@ -20,6 +20,7 @@ import CalendrierClub from './pages/calendrierClub';
 import Medias from './pages/Medias';
 import Page404 from './pages/Page404';
 import CategoriesPage from './pages/CategoriesPage';
+import PolitiqueConfidentialite from './pages/PolitiqueConfidentialite';
 
 // 🔐 Authentification admin
 import AdminLogin from './pages/Admin/AdminLogin';
@@ -44,7 +45,7 @@ function App() {
   return (
     <AdminProvider>
       <Header />
-
+      <CookieBanner />
       <Routes>
         {/* 🌍 Pages publiques */}
         <Route path="/" element={<Accueil />} />
@@ -60,6 +61,7 @@ function App() {
         <Route path="/calendrier" element={<CalendrierClub />} />
         <Route path="/medias" element={<Medias />} />
         <Route path="*" element={<Page404 />} />
+        <Route path="/politique-confidentialite" element={<PolitiqueConfidentialite />} />
 
         {/* 🔐 Authentification admin */}
         <Route path="/admin/login" element={<AdminLogin />} />
