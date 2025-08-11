@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './preInscription.css';
+import { API_URL } from '../config';
 
 export default function PreInscription() {
   const [formulaire, setFormulaire] = useState({
@@ -210,7 +211,7 @@ const handleConfirmSend = async () => {
   };
 
   try {
-    const res = await fetch('http://localhost:3000/api/inscriptions', {
+    const res = await fetch(`${API_URL}/inscriptions`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)

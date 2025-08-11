@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import RetourDashboard from '../../components/RetourDashboard';
 import './adminForm.css';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function FormVideo() {
   const [titre, setTitre] = useState('');
@@ -28,7 +29,7 @@ export default function FormVideo() {
     };
 
     const token = localStorage.getItem('adminToken');
-    const res = await fetch('http://localhost:3000/api/media/videos', {
+    const res = await fetch(`${API_URL}/media/videos`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

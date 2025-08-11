@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './adminForm.css'; 
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AdminRegister() {
   const [nom, setNom] = useState('');
@@ -15,7 +16,7 @@ export default function AdminRegister() {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3000/api/admin/register', {
+    const res = await fetch(`${API_URL}/admin/register`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ nom, email, motDePasse })

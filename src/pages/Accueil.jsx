@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import BandeauEvenement from '../components/BandeauEvenement';
 import './accueil.css';
 import ActuCarrousel from '../components/ActuCarrousel';
+import { API_URL } from '../config.js'; // Assurez-vous que le chemin est correct
 
 export default function Accueil() {
   const [actus, setActus] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/actualites/derniere')
+    fetch(`${API_URL}actualites/derniere`)
       .then(res => res.json())
       .then(data => setActus(data.slice(0, 3)));
   }, []);

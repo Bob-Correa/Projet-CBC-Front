@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AdminCalendrier.css';
 import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AdminCalendrier() {
   const [evenements, setEvenements] = useState([]);
@@ -9,7 +10,7 @@ export default function AdminCalendrier() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/calendrier', {
+    fetch(`${API_URL}/calendrier`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -23,7 +24,7 @@ export default function AdminCalendrier() {
     const confirm = window.confirm("🗑️ Supprimer cet événement ?");
     if (!confirm) return;
 
-    const res = await fetch(`http://localhost:3000/api/calendrier/${id}`, {
+    const res = await fetch(`${API_URL}/calendrier/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`

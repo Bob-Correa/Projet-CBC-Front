@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import './AdminList.css';
 import FormulaireAjoutAdmin from '../../components/FormulaireAjoutAdmin';
 import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AdminList() {
   const [admins, setAdmins] = useState([]);
@@ -10,7 +11,7 @@ export default function AdminList() {
 
   const chargerAdmins = async () => {
     try {
-      const reponse = await fetch('http://localhost:3000/api/admin/all', {
+      const reponse = await fetch(`${API_URL}/admin/all`, {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem('adminToken')}`
         }
@@ -27,7 +28,7 @@ export default function AdminList() {
   };
 
   const promouvoirAdmin = async (id) => {
-    const reponse = await fetch(`http://localhost:3000/api/admin/role/${id}`, {
+    const reponse = await fetch(`${API_URL}/admin/role/${id}`, {
       method: 'PUT',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,
@@ -48,7 +49,7 @@ export default function AdminList() {
   const supprimerAdmin = async (id) => {
     if (!window.confirm('❗ Supprimer cet admin ?')) return;
 
-    const reponse = await fetch(`http://localhost:3000/api/admin/${id}`, {
+    const reponse = await fetch(`${API_URL}/admin/${id}`, {
       method: 'DELETE',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('adminToken')}`

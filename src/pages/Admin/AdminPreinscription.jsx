@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './adminInscriptions.css';
-import RetourDashboard from '../../components/RetourDashboard';     
+import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct     
 
 
 
@@ -21,7 +22,7 @@ export default function AdminPreinscriptions() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/inscriptions', {
+    fetch(`${API_URL}/inscriptions`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -41,7 +42,7 @@ export default function AdminPreinscriptions() {
   }, [token]);
 
   const valider = async (id) => {
-    const res = await fetch(`http://localhost:3000/api/inscriptions/${id}/valider`, {
+    const res = await fetch(`${API_URL}/inscriptions/${id}/valider`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${token}`
@@ -61,7 +62,7 @@ export default function AdminPreinscriptions() {
     const confirm = window.confirm("Supprimer cette pré-inscription ?");
     if (!confirm) return;
 
-    const res = await fetch(`http://localhost:3000/api/inscriptions/${id}`, {
+    const res = await fetch(`${API_URL}/inscriptions/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
@@ -167,7 +168,7 @@ export default function AdminPreinscriptions() {
         )}
         <Link to={`/admin/inscriptions/modifier/${p._id}`}>✏️ Modifier</Link>
         <a
-          href={`http://localhost:3000/api/inscriptions/${p._id}/pdf`}
+          href={`${API_URL}/inscriptions/${p._id}/pdf`}
           target="_blank"
           rel="noopener noreferrer"
         >📄 PDF</a>

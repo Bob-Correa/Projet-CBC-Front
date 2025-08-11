@@ -1,13 +1,14 @@
 // src/components/LibrairieImages.jsx
 import { useEffect, useState } from 'react';
 import './LibrairieImages.css';
+import { API_URL } from '../config.js'; // Assurez-vous que le chemin est correct
 
 export default function LibrairieImages({ onSelect }) {
   const [albums, setAlbums] = useState([]);
   const [filtre, setFiltre] = useState('Tous');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/media/albums')
+    fetch(`${API_URL}/media/albums`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setAlbums(data);
@@ -45,7 +46,7 @@ export default function LibrairieImages({ onSelect }) {
                 // eslint-disable-next-line jsx-a11y/img-redundant-alt
               <img
                 key={i}
-                src={`http://localhost:3000${img}`}
+                src={`${API_URL}${img}`}
                 alt={`Image de l’album ${album.titre} #${i + 1}`}
                 onClick={() => onSelect(img)}
                 className="img-clickable"

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './adminForm.css';
 import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function ModifierPreinscription() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ export default function ModifierPreinscription() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/inscriptions/${id}`, {
+    fetch(`${API_URL}/inscriptions/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -34,7 +35,7 @@ export default function ModifierPreinscription() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch(`http://localhost:3000/api/inscriptions/${id}`, {
+    const res = await fetch(`${API_URL}/inscriptions/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

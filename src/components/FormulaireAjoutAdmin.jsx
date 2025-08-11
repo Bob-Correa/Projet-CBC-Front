@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { API_URL } from '../config.js'; // Assurez-vous que le chemin est correct
 
 function FormulaireAjoutAdmin({ onAdminAjoute }) {
   const [nom, setNom] = useState('');
@@ -10,7 +11,7 @@ function FormulaireAjoutAdmin({ onAdminAjoute }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const reponse = await fetch('http://localhost:3000/api/admin/create', {
+    const reponse = await fetch(`${API_URL}admin/create`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${localStorage.getItem('adminToken')}`,

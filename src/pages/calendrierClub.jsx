@@ -3,6 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import frLocale from '@fullcalendar/core/locales/fr';
+import { API_URL } from '../config';
 
 const formatGoogleDate = (date) => {
   return new Date(date).toISOString().replace(/[-:]|\.000Z/g, '').slice(0, 15);
@@ -16,7 +17,7 @@ export default function CalendrierClub() {
 
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/calendrier')
+    fetch(`${API_URL}/calendrier`)
       .then(res => res.json())
       .then(data => {
         const transformes = data.map(e => ({

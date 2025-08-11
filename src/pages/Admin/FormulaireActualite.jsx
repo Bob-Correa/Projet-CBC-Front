@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './adminForm.css';
 import RetourDashboard from '../../components/RetourDashboard';
 import LibrairieImages from '../../components/LibrairieImages';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function FormulaireActualite() {
   const [titre, setTitre] = useState('');
@@ -31,7 +32,7 @@ export default function FormulaireActualite() {
     try {
       const token = localStorage.getItem('adminToken');
 
-      const res = await fetch('http://localhost:3000/api/actualites', {
+      const res = await fetch(`${API_URL}/actualites`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`
@@ -95,7 +96,7 @@ export default function FormulaireActualite() {
             src={
               imageUpload
                 ? URL.createObjectURL(imageUpload)
-                : `http://localhost:3000${imageLibrairie}`
+                : `${API_URL}${imageLibrairie}`
             }
             alt={`Prévisualisation de l’image : ${imageLibrairie || imageUpload.name}`}
 

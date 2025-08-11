@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 //import { useAdmin } from '../../context/AdminContext';
 import RetourDashboard from '../../components/RetourDashboard';
 import './AdminActualites.css';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AdminActualites() {
   const [actualites, setActualites] = useState([]);
@@ -13,7 +14,7 @@ export default function AdminActualites() {
 
 useEffect(() => {
   const token = localStorage.getItem('adminToken');
-  fetch('http://localhost:3000/api/actualites', {
+  fetch(`${API_URL}/actualites`, {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -37,7 +38,7 @@ useEffect(() => {
     if (!confirm) return;
 
     const token = localStorage.getItem('adminToken');
-    const res = await fetch(`http://localhost:3000/api/actualites/${id}`, {
+    const res = await fetch(`${API_URL}/actualites/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${token}`
@@ -66,7 +67,7 @@ useEffect(() => {
              {actu.image && (
                 <Link to={`/actualites/${actu._id}`}>
                   <img
-                    src={`http://localhost:3000${actu.image}`}
+                    src={`${API_URL}${actu.image}`}
                     alt={actu.titre}
                     className="image-actu"
                     style={{ cursor: 'pointer' }}

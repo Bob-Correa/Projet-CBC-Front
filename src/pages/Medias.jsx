@@ -1,6 +1,7 @@
 import { useEffect, useState} from 'react';
 import './Medias.css';
 import LightGallery from 'lightgallery/react';
+import { API_URL } from '../config';
 
 // Plugins
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
@@ -21,7 +22,7 @@ export default function Medias() {
     : videos.filter(video => video.categorie === filtreCategorie);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/media/albums')
+    fetch(`${API_URL}/media/albums`)
       .then(res => res.json())
       .then(data => {
         console.log("📁 Albums reçus :", data);
@@ -29,7 +30,7 @@ export default function Medias() {
       })
       .catch(() => setMessage("❌ Impossible de charger les albums"));
 
-    fetch('http://localhost:3000/api/media/videos')
+    fetch(`${API_URL}/media/videos`)
       .then(res => res.json())
       .then(data => {
         console.log("🎥 Vidéos reçues :", data);
@@ -71,11 +72,11 @@ export default function Medias() {
               {album.images.map((img, i) => (
                 <a
                   key={i}
-                  href={`http://localhost:3000${img}`}
+                  href={`${API_URL}${img}`}
                   data-sub-html={`<h4>${album.titre}</h4><p>${album.description}</p>`}
                 >
                   <img
-                    src={`http://localhost:3000${img}`}
+                    src={`${API_URL}${img}`}
                     alt={`Miniature ${i + 1}`}
                     style={{ width: '100px', marginRight: '10px', cursor: 'pointer' }}
                   />

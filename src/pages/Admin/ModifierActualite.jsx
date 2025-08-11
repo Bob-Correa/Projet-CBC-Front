@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './ModifierActualite.css';
 import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 
 export default function ModifierActualite() {
@@ -16,7 +17,7 @@ export default function ModifierActualite() {
   useEffect(() => {
     // Charger l’actu existante
     const token = localStorage.getItem('adminToken');
-    fetch(`http://localhost:3000/api/actualites/${id}`, {
+    fetch(`${API_URL}/actualites/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -40,7 +41,7 @@ export default function ModifierActualite() {
     const token = localStorage.getItem('adminToken');
 
     try {
-      const res = await fetch(`http://localhost:3000/api/actualites/${id}`, {
+      const res = await fetch(`${API_URL}/actualites/${id}`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`

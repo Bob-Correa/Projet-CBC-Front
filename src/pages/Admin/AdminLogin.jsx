@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAdmin } from '../../context/AdminContext';
 import './adminForm.css';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -16,7 +17,7 @@ export default function AdminLogin() {
     e.preventDefault();
 
     try {
-      const res = await fetch('http://localhost:3000/api/admin/login', {
+      const res = await fetch(`${API_URL}/admin/login`, {
         method: 'POST',
         credentials: 'include', // important pour le cookie refreshToken
         headers: { 'Content-Type': 'application/json' },
@@ -29,7 +30,7 @@ export default function AdminLogin() {
         localStorage.setItem('adminToken', data.token);
 
         // Optionnel : appel immédiat au profil
-        const profilRes = await fetch('http://localhost:3000/api/admin/profil', {
+        const profilRes = await fetch(`${API_URL}/admin/profil`, {
           headers: {
             Authorization: `Bearer ${data.token}`
           }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './AjouterEvenement.css';
 import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AjouterEvenement() {
   const [evenement, setEvenement] = useState({
@@ -45,7 +46,7 @@ const payload = {
   score: scoreFormate,
 };
 
-      const res = await fetch('http://localhost:3000/api/calendrier', {
+      const res = await fetch(`${API_URL}/calendrier`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

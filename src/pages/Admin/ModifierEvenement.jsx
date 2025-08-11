@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import RetourDashboard from '../../components/RetourDashboard';
 import './AjouterEvenement.css'; // On réutilise le même style que pour Ajouter
 import ModalConfirmation from '../../components/ModalConfirmation';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function ModifierEvenement() {
   const { id } = useParams();
@@ -12,7 +13,7 @@ export default function ModifierEvenement() {
   const token = localStorage.getItem('adminToken');
 
   useEffect(() => {
-    fetch(`http://localhost:3000/api/calendrier/${id}`, {
+    fetch(`${API_URL}/calendrier/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
@@ -61,7 +62,7 @@ export default function ModifierEvenement() {
       score: scoreFormate
     };
 
-    const res = await fetch(`http://localhost:3000/api/calendrier/${id}`, {
+    const res = await fetch(`${API_URL}/calendrier/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

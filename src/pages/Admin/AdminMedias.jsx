@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AdminMedias.css';
 import RetourDashboard from '../../components/RetourDashboard';
+import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
 
 export default function AdminMedias() {
   const [albums, setAlbums] = useState([]);
@@ -11,7 +12,7 @@ export default function AdminMedias() {
 
   useEffect(() => {
     // Récupération des albums
-    fetch('http://localhost:3000/api/media/albums', {
+    fetch(`${API_URL}/media/albums`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -21,7 +22,7 @@ export default function AdminMedias() {
       .catch(() => setMessage("❌ Impossible de charger les albums"));
 
     // Récupération des vidéos
-    fetch('http://localhost:3000/api/media/videos', {
+    fetch(`${API_URL}/media/videos`, {
       headers: {
         Authorization: `Bearer ${token}`
       }
@@ -35,7 +36,7 @@ export default function AdminMedias() {
     const confirm = window.confirm("🗑️ Supprimer cet album ?");
     if (!confirm) return;
 
-    const res = await fetch(`http://localhost:3000/api/media/albums/${id}`, {
+    const res = await fetch(`${API_URL}/media/albums/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     });
@@ -51,7 +52,7 @@ export default function AdminMedias() {
     const confirm = window.confirm("🗑️ Supprimer cette vidéo ?");
     if (!confirm) return;
 
-    const res = await fetch(`http://localhost:3000/api/media/videos/${id}`, {
+    const res = await fetch(`${API_URL}/media/videos/${id}`, {
       method: 'DELETE',
       headers: { Authorization: `Bearer ${token}` }
     });

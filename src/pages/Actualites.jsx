@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import './actualites.css';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../config.js'; // Assurez-vous que le chemin est correct
 
 export default function Actualites() {
   const [actualites, setActualites] = useState([]);
   const [recherche, setRecherche] = useState('');
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/actualites')
+    fetch(`${API_URL}/actualites`)
       .then(res => {
         if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
         return res.json();
