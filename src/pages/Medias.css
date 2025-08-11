@@ -1,17 +1,25 @@
+/* Imports LightGallery */
+@import "lightgallery/css/lightgallery.css";
+@import "lightgallery/css/lg-thumbnail.css";
+@import "lightgallery/css/lg-zoom.css";
+@import "lightgallery/css/lg-video.css";
+
+/* Conteneur principal */
 .page-medias {
   max-width: 1000px;
   margin: 3rem auto;
   padding: 2rem;
   background-color: #fff6f6;
   border: 2px solid #7f1d1d;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(127, 29, 29, 0.1);
+  border-radius: 12px;
+  box-shadow: 0 0 16px rgba(127, 29, 29, 0.1);
 }
 
+/* Titres */
 .page-medias h2 {
   text-align: center;
   color: #7f1d1d;
-  font-size: 2rem;
+  font-size: 2.2rem;
   margin-bottom: 2rem;
 }
 
@@ -19,10 +27,44 @@
   color: #7f1d1d;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
 }
 
-/* Albums photo */
+/* Filtres catégories */
+.filtres-categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.filtres-categories button {
+  background-color: #7f1d1d;
+  color: white;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 30px;
+  font-weight: bold;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 6px rgba(127, 29, 29, 0.2);
+}
+
+.filtres-categories button:hover {
+  background-color: #a12828;
+  box-shadow: 0 4px 10px rgba(127, 29, 29, 0.3);
+  transform: translateY(-2px);
+}
+
+.filtres-categories .active-filtre {
+  background-color: #ffcb05;
+  color: #7f1d1d;
+  box-shadow: 0 4px 10px rgba(255, 203, 5, 0.4);
+}
+
+/* Albums */
 .gallery-albums {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -33,8 +75,13 @@
   background-color: white;
   border-left: 6px solid #a12828;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(127, 29, 29, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.carte-album:hover {
+  transform: scale(1.02);
 }
 
 .carte-album h4 {
@@ -46,8 +93,17 @@
 .carte-album p {
   font-size: 0.95rem;
   color: #333;
+  margin-bottom: 0.4rem;
 }
 
+.carte-album .date,
+.carte-album .categorie,
+.carte-album .nombre-images {
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* Miniatures LightGallery */
 .miniatures {
   display: flex;
   flex-wrap: wrap;
@@ -56,11 +112,26 @@
 }
 
 .miniatures img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  transition: transform 0.2s ease;
+}
+
+.miniatures img:hover {
+  transform: scale(1.05);
+}
+.date .categorie .nombre-images {
+background-color: #fcecec;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  box-shadow: 0 1px 4px rgba(127, 29, 29, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
 }
 
 /* Vidéos */
@@ -75,13 +146,19 @@
   background-color: white;
   border-left: 6px solid #a12828;
   padding: 1rem;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 0 2px 8px rgba(127, 29, 29, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.carte-video:hover {
+  transform: scale(1.02);
 }
 
 .carte-video h4 {
   margin-top: 0;
   color: #7f1d1d;
+  font-size: 1.2rem;
 }
 
 .carte-video p {
@@ -91,10 +168,14 @@
 }
 
 .carte-video iframe {
-  border-radius: 4px;
+  border-radius: 6px;
   border: 1px solid #ccc;
+  width: 100%;
+  height: 250px;
 }
 
+
+/* Responsive */
 @media (max-width: 480px) {
   .gallery-albums,
   .videos-section {
@@ -102,8 +183,8 @@
   }
 
   .miniatures img {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
 
   .page-medias {
@@ -117,8 +198,19 @@
   .page-medias h3 {
     font-size: 1.2rem;
   }
+
+  .filtres-categories button {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
 }
-@import "lightgallery/css/lightgallery.css";
-@import "lightgallery/css/lg-thumbnail.css";
-@import "lightgallery/css/lg-zoom.css";
-@import "lightgallery/css/lg-video.css";
+.date .categorie .nombre-images {
+background-color: #fcecec;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  box-shadow: 0 1px 4px rgba(127, 29, 29, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 500;
+}

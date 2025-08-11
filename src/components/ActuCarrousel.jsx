@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import './ActuCarrousel.css';
 import { Link } from 'react-router-dom';
+import { API_URL } from '../config.js'; // Assurez-vous que le chemin est correct
 
 
 export default function ActuCarrousel() {
@@ -8,7 +9,7 @@ export default function ActuCarrousel() {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/actualites')
+    fetch(`${API_URL}/actualites`)
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setActualites(data);
@@ -40,7 +41,7 @@ export default function ActuCarrousel() {
   {actu.image && (
     <Link to={`/actualites/${actu.slug}`}>
       <img
-        src={`http://localhost:3000${actu.image}`}
+        src={`${API_URL}${actu.image}`}
         alt={actu.titre}
         className="carrousel-image"
       />

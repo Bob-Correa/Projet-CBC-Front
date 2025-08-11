@@ -40,11 +40,11 @@ export default function Medias() {
 
   return (
     <div className="page-medias">
-      <h2>Médias du Club</h2>
+      <h2>Galerie</h2>
 
       {message && <p>{message}</p>}
 
-      <h3>📁 Albums photos</h3>
+      <h3>Albums photos</h3>
       <div className="filtres-categories">
         {['Tous', 'Matchs', 'Tournois', 'Événements', 'Coulisses'].map(cat => (
           <button
@@ -83,9 +83,9 @@ export default function Medias() {
               ))}
             </LightGallery>
 
-            <p className="date">📅 Créé le : {new Date(album.date).toLocaleDateString('fr-FR')}</p>
-            <p className="categorie">📂 Catégorie : {album.categorie}</p>
-            <p className="nombre-images">🖼️ {album.images.length} image(s)</p>
+            <p className="date"> Créé le : {new Date(album.date).toLocaleDateString('fr-FR')}</p>
+            <p className="categorie"> Catégorie : {album.categorie}</p>
+            <p className="nombre-images"> {album.images.length} image(s)</p>
           </div>
         ))}
       </div>

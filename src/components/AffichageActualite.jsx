@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { API_URL } from "../config";
 
 export default function AffichageActualite({ actu }) {
   const navigate = useNavigate();
@@ -14,7 +15,7 @@ export default function AffichageActualite({ actu }) {
         <div className="image-container">
           {actu.image && (
             <img
-              src={`http://localhost:3001${actu.image}`}
+              src={`${API_URL}${actu.image}`}
               alt={actu.titre}
             />
           )}

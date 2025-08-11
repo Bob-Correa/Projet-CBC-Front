@@ -43,7 +43,7 @@ export default function CalendrierClub() {
 
   return (
     <div className="calendrier-container">
-      <h2>📅 Calendrier du club</h2>
+      <h2>Calendrier du club</h2>
       {message && <p>{message}</p>}
 
       {popupEvenement && (
