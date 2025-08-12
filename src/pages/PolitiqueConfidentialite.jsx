@@ -5,7 +5,7 @@ const PolitiqueConfidentialite = () => (
     <h1>Politique de confidentialité</h1>
 
     <p>
-      Cette politique de confidentialité explique comment notre association sportive de basket collecte, utilise et protège les données personnelles des membres lors de leur inscription.
+      Cette politique de confidentialite explique comment notre association sportive de basket collecte, utilise et protège les données personnelles des membres lors de leur inscription.
     </p>
 
     <h2>1. Données collectées</h2>
