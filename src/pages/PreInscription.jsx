@@ -8,8 +8,10 @@ export default function PreInscription() {
     nom: '',
     prenom: '',
     sexe: '',
+    taille: '',
     dateNaissance: '',
     categorie: '',
+    NumeroMaillot: '',
     cotisation: '',
     adresse: '',
     codePostal: '',
@@ -74,6 +76,8 @@ export default function PreInscription() {
 
   return '';
 };
+
+
 
 
   const estMineur = () => {
@@ -256,7 +260,7 @@ const handleConfirmSend = async () => {
         <option value="masculin">Masculin</option>
         <option value="feminin">Féminin</option>
       </select>
-
+      <input type="text" name="taille" placeholder="Taille (en cm)" value={formulaire.taille} onChange={handleChange} required />
      <input type="date" name="dateNaissance" value={formulaire.dateNaissance} onChange={handleChange} required min="1950-01-01"
 />
 
@@ -291,7 +295,7 @@ const handleConfirmSend = async () => {
 
 
       <input type="texte" name="cotisation" placeholder="Cotisation €" value={`${formulaire.cotisation}€` } readOnly required />
-
+      <input type="text" name="numeroMaillot" placeholder="Numéro de maillot souhaité" value={formulaire.NumeroMaillot} onChange={handleChange} required />
       <input type="text" name="adresse" placeholder="Adresse" value={formulaire.adresse} onChange={handleChange} required />
       <input type="text" name="codePostal" placeholder="Code postal" value={formulaire.codePostal} onChange={handleChange} required />
       <input type="text" name="ville" placeholder="Ville" value={formulaire.ville} onChange={handleChange}  />

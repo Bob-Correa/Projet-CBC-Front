@@ -9,7 +9,7 @@ export default function Accueil() {
   const [actus, setActus] = useState([]);
 
   useEffect(() => {
-    fetch(`${API_URL}actualites/derniere`)
+    fetch(`${API_URL}/actualites/derniere`)
       .then(res => res.json())
       .then(data => setActus(data.slice(0, 3)));
   }, []);

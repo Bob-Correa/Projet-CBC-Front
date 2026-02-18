@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import RetourDashboard from '../../components/RetourDashboard';
 import './AdminActualites.css';
 import { API_URL } from '../../config.js'; // Assurez-vous que le chemin est correct
+import { STATIC_URL } from '../../config.js';
 
 export default function AdminActualites() {
   const [actualites, setActualites] = useState([]);
@@ -67,7 +68,7 @@ useEffect(() => {
              {actu.image && (
                 <Link to={`/actualites/${actu._id}`}>
                   <img
-                    src={`${API_URL}${actu.image}`}
+                    src={`${STATIC_URL}${actu.image}`}
                     alt={actu.titre}
                     className="image-actu"
                     style={{ cursor: 'pointer' }}

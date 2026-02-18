@@ -2,12 +2,12 @@ import { useState } from 'react';
 import './Bureau.css';
 
 const membres = [
-  { id: 1, nom: 'Veronique Castillo', role: 'Presidente', photo: '/Photo-membre' },
+  { id: 1, nom: 'Veronique Castillo', role: 'Presidente', photo: '/Photo-membre/Vero.jpeg' },
   { id: 2, nom: 'Semchaa Haroun', role: 'Vice-Presidente', photo: '/Photo-membre/Semchaa.JPG' },
   { id: 3, nom: 'Peggy Cavallin', role: 'Trésorière', photo: '/Photo-membre/Peggy.jpg' },
   { id: 4, nom: 'Bob Correa', role: 'Secrétaire Générale', photo: '/Photo-membre/Bob.jpg' },
   { id: 5, nom: 'Nicolas Djemai', role: 'Correspondant', photo: '/Photo-membre/Nicolas.JPG' },
-  { id: 6, nom: 'Lucas De Freitas', role: 'Membre Assesseur', photo: '/Photo-membre/' },
+  { id: 6, nom: 'Lucas De Freitas', role: 'Membre Assesseur', photo: '/Photo-membre/Lucas.jpeg' },
   { id: 7, nom: 'Yanis Medjbar', role: 'Membre Assesseur', photo: '/Photo-membre/Yaya.jpg' },
   { id: 8, nom: 'Manon Tirabassi', role: 'Membre Assesseur', photo: '/Photo-membre/Manon.jpg' },
   { id: 9, nom: 'Olivier Daran', role: 'Membre Assesseur', photo: '/Photo-membre/olivier.jpg' },

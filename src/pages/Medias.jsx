@@ -2,6 +2,7 @@ import { useEffect, useState} from 'react';
 import './Medias.css';
 import LightGallery from 'lightgallery/react';
 import { API_URL } from '../config';
+import { STATIC_URL } from '../config';
 
 // Plugins
 import lgThumbnail from 'lightgallery/plugins/thumbnail';
@@ -72,11 +73,11 @@ export default function Medias() {
               {album.images.map((img, i) => (
                 <a
                   key={i}
-                  href={`${API_URL}${img}`}
+                  href={`${STATIC_URL}${img}`}
                   data-sub-html={`<h4>${album.titre}</h4><p>${album.description}</p>`}
                 >
                   <img
-                    src={`${API_URL}${img}`}
+                    src={`${ STATIC_URL }${img}`}
                     alt={`Miniature ${i + 1}`}
                     style={{ width: '100px', marginRight: '10px', cursor: 'pointer' }}
                   />
