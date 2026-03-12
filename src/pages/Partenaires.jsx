@@ -26,6 +26,11 @@ const partenaires = [
     logo: '/Logo/kyks-tacos.png',
     lien: 'https://www.facebook.com/Lotentik13310/?locale=fr_FR',
   },
+  {
+    nom: 'Tonton Gust',
+    logo: '/Logo/tonton-gust.png',
+    lien: 'https://www.tontongust.fr',
+  }
   // Ajoute autant de partenaires que tu veux
 ];
 
